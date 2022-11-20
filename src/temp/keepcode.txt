@@ -1,0 +1,31 @@
+// Player move all
+
+        if(keyH.upPressed){
+            y -= speed;
+            if (keyH.leftPressed) {
+                x -=speed/2;
+            } else if (keyH.rightPressed) {
+                x += speed/2;
+            }
+        } else if (keyH.downPressed) {
+            y += speed;
+            if (keyH.leftPressed) {
+                x -=speed/2;
+            } else if (keyH.rightPressed) {
+                x += speed/2;
+            }
+        } else if (keyH.leftPressed) {
+            x -=speed;
+            if (keyH.upPressed) {
+                y -=speed/2;
+            } else if (keyH.downPressed){
+                y += speed/2;
+            }
+        } else if (keyH.rightPressed) {
+            x += speed;
+            if (keyH.upPressed) {
+                y -=speed/2;
+            } else if (keyH.downPressed){
+                y += speed/2;
+            }
+        }
