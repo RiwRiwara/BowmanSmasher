@@ -4,7 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="New ProjectBowman Ver1" />
+    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add java other file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maps/map01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maps/world01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Boots.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Chest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Door.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Key.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/boots.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/chest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/door.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/key.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_down_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_down_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_left_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_left_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_right_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_right_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_up_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/boy_up_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/BlueBoyAdventure.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/coin.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/fanfare.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/powerup.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sound/unlock.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/Tile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/earth.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/sand.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/tree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/wall.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tiles/water.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +56,8 @@
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
-        <option name="argument" value="--follow-tags" />
-        <option name="title" value="Current Branch" />
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,6 +77,26 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="BowmanVer1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,7 +113,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669036429891</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="New ProjectBowman Ver1">
+      <created>1669036980714</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1669036980714</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add java other file">
+      <created>1669037162007</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669037162007</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -78,6 +155,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="New ProjectBowman Ver1" />
-    <option name="LAST_COMMIT_MESSAGE" value="New ProjectBowman Ver1" />
+    <MESSAGE value="Add java other file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add java other file" />
   </component>
 </project>
