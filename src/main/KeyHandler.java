@@ -3,13 +3,16 @@ package main;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeyHandler
-        implements KeyListener
-{
+public class KeyHandler implements KeyListener {
     public boolean upPressed;
     public boolean downPressed;
     public boolean leftPressed;
     public boolean rightPressed;
+    GamePanel gp;
+
+    public KeyHandler(GamePanel gp) {
+        this.gp = gp;
+    }
 
     public void keyTyped(KeyEvent e) {}
 
@@ -28,6 +31,14 @@ public class KeyHandler
         if (code == 68) {
             this.rightPressed = true;
         }
+        if(code == KeyEvent.VK_P){
+            if(gp.gameState == gp.playState){
+                gp.gameState = gp.pauseState;
+            } else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
+        }
+
     }
 
 

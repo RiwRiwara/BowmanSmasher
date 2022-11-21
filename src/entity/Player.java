@@ -10,17 +10,12 @@ import main.GamePanel;
 import main.KeyHandler;
 
 
-public class Player
-        extends Entity
-{
+public class Player extends Entity {
     GamePanel gp;
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
-
-
-
+    
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
@@ -42,6 +37,7 @@ public class Player
 
 
     public void setDefaultValues() {
+        // TODO: 22/11/2565 Player start point(X, Y) 
         int startX = 15;
         int startY = 42;
         worldX = gp.tileSize * startX;
@@ -53,23 +49,15 @@ public class Player
 
     public void getPlayerImage() {
         try {
-                    up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_up1.png")));
-                    up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_up2.png")));
-                    down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_down1.png")));
-                    down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_down2.png")));
-                    left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_left1.png")));
-                    left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_left2.png")));
-                    right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_right1.png")));
-                    right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boman_right2.png")));
+                    up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up1.png")));
+                    up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up2.png")));
+                    down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_down1.png")));
+                    down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_down2.png")));
+                    left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_left1.png")));
+                    left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_left2.png")));
+                    right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_right1.png")));
+                    right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_right2.png")));
 
-//            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-up1.png")));
-//            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-up2.png")));
-//            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-down1.png")));
-//            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-down2.png")));
-//            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-left1.png")));
-//            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-left2.png")));
-//            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-right1.png")));
-//            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-right2.png")));
         }
         catch (IOException e) {
             e.printStackTrace();

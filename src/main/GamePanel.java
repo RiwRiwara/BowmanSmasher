@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JPanel;
+
+import object.SuperObject;
 import tile.TileManager;
 
 
@@ -27,17 +29,23 @@ public class GamePanel
 
 
     int FPS = 60;
-
-
     TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
-
+    public AssetSetter aSetter = new AssetSetter(this);
     Thread gameThread;
 
+    // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
+    public SuperObject obj[] = new SuperObject[10];
+
+    // GAME STATE
+    public final int titleState = 0;
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
     public GamePanel() {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -49,9 +57,9 @@ public class GamePanel
 
 
     public void setupGame() {
-
-
-        playMusic(0);
+        aSetter.setObject();
+        gameState = playState;
+        //playMusic(0);
     }
 
 
@@ -70,7 +78,6 @@ public class GamePanel
         int drawCount = 0;
 
         while (gameThread != null) {
-
             long currentTime = System.nanoTime();
 
             delta += (currentTime - lastTime) / drawInterval;
@@ -94,20 +101,32 @@ public class GamePanel
 
 
     public void update() {
-        player.update();
+        if(gameState==1){
+            player.update();
+        }
+        if(gameState==pauseState){
+            //nothing
+        }
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
+        // TITLE SCREEN
+
 
         tileM.draw(g2);
 
-
-
+        // OBJECT
+        for(int i = 0;i<obj.length;i++){
+            if(obj[i] != null){
+                obj[i].draw(g2, this);
+            }
+        }
 
         player.draw(g2);
+
         g2.dispose();
     }
 
