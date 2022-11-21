@@ -5,8 +5,7 @@
 /*    */ import java.awt.Graphics2D;
 /*    */ import java.awt.image.BufferedImage;
 /*    */ import java.text.DecimalFormat;
-/*    */ import object.OBJ_Key;
-/*    */ 
+
 /*    */ public class UI
 /*    */ {
 /*    */   GamePanel gp;
@@ -27,8 +26,6 @@
 /*    */     
 /* 28 */     this.arial_40 = new Font("Arial", 0, 40);
 /* 29 */     this.arial_80B = new Font("Arial", 1, 80);
-/* 30 */     OBJ_Key key = new OBJ_Key();
-/* 31 */     this.keyImage = key.image;
 /*    */   }
 /*    */ 
 /*    */   

@@ -54,15 +54,24 @@ import java.util.Objects;
 /*     */   
 /*     */   public void getPlayerImage() {
 /*     */     try {
-/*  59 */       up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_1.png")));
-/*  60 */       up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_up_2.png")));
-/*  61 */       down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_1.png")));
-/*  62 */       down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_down_2.png")));
-/*  63 */       left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_1.png")));
-/*  64 */       left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_left_2.png")));
-/*  65 */       right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_1.png")));
-/*  66 */       right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boy_right_2.png")));
-/*     */     }
+//        up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boup1.png")));
+//        up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boup2.png")));
+//        down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/bodown1.png")));
+//        down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/bodown2.png")));
+//        left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boleft1.png")));
+//        left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boleft2.png")));
+//        right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boright1.png")));
+//        right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/boright2.png")));
+
+        up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-up1.png")));
+        up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-up2.png")));
+        down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-down1.png")));
+        down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-down2.png")));
+        left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-left1.png")));
+        left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-left2.png")));
+        right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-right1.png")));
+        right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/player/ZOMBIE-right2.png")));
+         }
 /*  68 */     catch (IOException e) {
 /*  69 */       e.printStackTrace();
 /*     */     } 
@@ -89,9 +98,7 @@ import java.util.Objects;
 /*     */       
 /* 102 */       collisionOn = false;
 /* 103 */       gp.cChecker.checkTile(this);
-/*     */ 
-/*     */       
-/* 106 */       int objIndex = gp.cChecker.checkObject(this, true);
+
 
 /* 111 */       if (!collisionOn) {
                     switch (direction) {

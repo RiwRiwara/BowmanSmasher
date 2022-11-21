@@ -4,19 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add java other file">
+    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Clean code 1">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maps/map01.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maps/world01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maps/map01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/maps/map01.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maps/world01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/maps/world01.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_Boots.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_Chest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_Door.java" beforeDir="false" />
@@ -34,19 +37,8 @@
       <change beforePath="$PROJECT_DIR$/src/player/boy_right_2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/player/boy_up_1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/player/boy_up_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/BlueBoyAdventure.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/coin.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/fanfare.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/powerup.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/unlock.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/Tile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/earth.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/grass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/sand.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/tree.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/wall.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/water.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,12 +1,11 @@
 /*     */ package main;
-/*     */ 
+
 /*     */ import entity.Player;
 /*     */ import java.awt.Color;
 /*     */ import java.awt.Dimension;
 /*     */ import java.awt.Graphics;
 /*     */ import java.awt.Graphics2D;
 /*     */ import javax.swing.JPanel;
-/*     */ import object.SuperObject;
 /*     */ import tile.TileManager;
 /*     */ 
 /*     */ 
@@ -28,26 +27,21 @@
 /*     */ 
 /*     */   
 /*  30 */   int FPS = 60;
-/*     */ 
-/*     */   
+
+
 /*  33 */   TileManager tileM = new TileManager(this);
 /*  34 */   KeyHandler keyH = new KeyHandler();
 /*  35 */   Sound music = new Sound();
 /*  36 */   Sound se = new Sound();
 /*  37 */   public CollisionChecker cChecker = new CollisionChecker(this);
-/*  38 */   public AssetSetter aSetter = new AssetSetter(this);
 /*  39 */   public UI ui = new UI(this);
-/*     */   
+
 /*     */   Thread gameThread;
 /*     */   
 /*  43 */   public Player player = new Player(this, this.keyH);
-/*  44 */   public SuperObject[] obj = new SuperObject[10];
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
+
 /*     */   public GamePanel() {
-/*  50 */     setPreferredSize(new Dimension(768, 576));
+/*  50 */     setPreferredSize(new Dimension(screenWidth, screenHeight));
 /*  51 */     setBackground(Color.black);
 /*  52 */     setDoubleBuffered(true);
 /*  53 */     addKeyListener(this.keyH);
@@ -56,7 +50,7 @@
 /*     */ 
 /*     */   
 /*     */   public void setupGame() {
-/*  59 */     this.aSetter.setObject();
+
 /*     */     
 /*  61 */     playMusic(0);
 /*     */   }
@@ -112,12 +106,7 @@
 /* 112 */     this.tileM.draw(g2);
 /*     */ 
 /*     */     
-/* 115 */     for (int i = 0; i < this.obj.length; i++) {
-/* 116 */       if (this.obj[i] != null) {
-/* 117 */         this.obj[i].draw(g2, this);
-/*     */       }
-/*     */     } 
-/*     */ 
+
 /*     */     
 /* 122 */     this.player.draw(g2);
 /*     */ 
