@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="New ProjectBowman Ver1" />
     <option name="SHOW_DIALOG" value="false" />
