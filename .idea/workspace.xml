@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add pause Function,&#10;Add Object Interactive Function">
+    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669059673622</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause">
+      <created>1669114200645</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669114200645</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,6 +177,7 @@
     <MESSAGE value="Remove OBject function" />
     <MESSAGE value="Add map and Player" />
     <MESSAGE value="Add pause Function,&#10;Add Object Interactive Function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add pause Function,&#10;Add Object Interactive Function" />
+    <MESSAGE value="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause" />
   </component>
 </project>

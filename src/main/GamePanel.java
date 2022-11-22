@@ -11,9 +11,7 @@ import object.SuperObject;
 import tile.TileManager;
 
 
-public class GamePanel
-        extends JPanel
-        implements Runnable
+public class GamePanel extends JPanel implements Runnable
 {
     final int originalTileSize = 16;
     final int scale = 3;
@@ -59,8 +57,7 @@ public class GamePanel
 
     public void setupGame() {
         aSetter.setObject();
-        gameState = playState;
-        //playMusic(0);
+        playMusic(0);
         gameState = titleState;
     }
 
