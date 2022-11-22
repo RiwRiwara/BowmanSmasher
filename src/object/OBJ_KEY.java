@@ -8,9 +8,10 @@ public class OBJ_KEY extends SuperObject{
     public OBJ_KEY(){
         name = "Key";
         try {
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/objects/key.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/objects/Key.png")));
         }catch (IOException e){
             e.printStackTrace();
         }
+        solidArea.x = 5;
     }
 }

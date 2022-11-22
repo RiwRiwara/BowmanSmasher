@@ -70,11 +70,11 @@ public class TileManager
             tile[8].collision = true;
 
             tile[9] = new Tile();
-            tile[9].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/box.png")));
+            tile[9].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
             tile[9].collision = true;
 
             tile[10] = new Tile();
-            tile[10].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/door.png")));
+            tile[10].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
 
 
             tile[11] = new Tile();

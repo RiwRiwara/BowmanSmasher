@@ -15,6 +15,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
+    int hasKey = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -82,10 +83,16 @@ public class Player extends Entity {
                 direction = "right";
             }
 
+            //Check TILE Collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            //Check OBJ collision
+            int objIndex =  gp.cChecker.checkObject(this, true);
+            pickUpObj(objIndex);
 
+
+            //IF collision == False, Player can move
             if (!collisionOn) {
                 switch (direction) {
                     case "up" : worldY -= speed;break;
@@ -107,8 +114,24 @@ public class Player extends Entity {
         }
     }
 
+    public void pickUpObj(int index){
+        if(index != 999){
+            String objName = gp.obj[index].name;
+            switch (objName){
+                case "Key":
+                    hasKey++;
+                    gp.obj[index] = null;
+                    break;
+                case "Door":
+                    if(hasKey>0){
+                        gp.obj[index] = null;
+                        hasKey--;
 
-
+                    }
+                    break;
+            }
+        }
+    }
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
