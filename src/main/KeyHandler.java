@@ -34,8 +34,20 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P){
             if(gp.gameState == gp.playState){
                 gp.gameState = gp.pauseState;
+
             } else if (gp.gameState == gp.pauseState) {
                 gp.gameState = gp.playState;
+
+            }
+        }
+        if(code == KeyEvent.VK_ENTER){
+            gp.gameState = gp.playState;
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            if(gp.gameState== gp.playState){
+                gp.gameState = gp.titleState;
+            }else{
+                System.exit(0);
             }
         }
 

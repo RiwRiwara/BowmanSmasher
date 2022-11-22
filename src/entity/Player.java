@@ -49,14 +49,15 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-                    up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up1.png")));
-                    up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up2.png")));
+
                     down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_down1.png")));
                     down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_down2.png")));
                     left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_left1.png")));
                     left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_left2.png")));
                     right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_right1.png")));
                     right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_right2.png")));
+                    up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up1.png")));
+                    up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/player/boman_up2.png")));
 
         }
         catch (IOException e) {

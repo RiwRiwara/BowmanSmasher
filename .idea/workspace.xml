@@ -4,68 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add map and Player">
-      <change afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_KEY.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
+    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="Add pause Function,&#10;Add Object Interactive Function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maps/cave01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/cave01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maps/map01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/map01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/maps/world01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/world01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-down1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-down1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-down2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-down2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-left1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-left1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-left2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-left2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-right1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-right1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-right2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-right2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-up1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-up1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/ZOMBIE-up2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/ZOMBIE-up2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/bodown1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/bodown1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/bodown2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/bodown2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boleft1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boleft1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boleft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boleft2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_down1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_down1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_down2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_down2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_left1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_left1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_left2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_left2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_right1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_right1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_right2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_right2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_up1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_up1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boman_up2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boman_up2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boright1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boright1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boright2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boright2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boup1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boup1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/boup2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/player/boup2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/BlueBoyAdventure.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/BlueBoyAdventure.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/coin.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/coin.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/fanfare.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/fanfare.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/powerup.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/powerup.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sound/unlock.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/unlock.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/box.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/box.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/cave.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/cave.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/door.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/door.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/floor_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/floor_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/floor_bot.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/floor_bot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/floor_left.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/floor_left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/floor_right.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/floor_right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/floor_top.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/floor_top.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/void.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/void.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_corner_left_top.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_corner_left_top.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_corner_right_top.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_corner_right_top.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_left.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_left.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_right.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_top_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_top_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tiles/cave01/wall_top_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/tiles/cave01/wall_top_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669052919290</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add pause Function,&#10;Add Object Interactive Function">
+      <created>1669059673622</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1669059673622</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,6 +170,7 @@
     <MESSAGE value="Add java other file" />
     <MESSAGE value="Remove OBject function" />
     <MESSAGE value="Add map and Player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add map and Player" />
+    <MESSAGE value="Add pause Function,&#10;Add Object Interactive Function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add pause Function,&#10;Add Object Interactive Function" />
   </component>
 </project>

@@ -27,7 +27,7 @@ public class GamePanel
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
 
-
+    //SYSTEMS
     int FPS = 60;
     TileManager tileM = new TileManager(this);
     KeyHandler keyH = new KeyHandler(this);
@@ -35,6 +35,7 @@ public class GamePanel
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public UI ui = new UI(this);
     Thread gameThread;
 
     // ENTITY AND OBJECT
@@ -60,6 +61,7 @@ public class GamePanel
         aSetter.setObject();
         gameState = playState;
         //playMusic(0);
+        gameState = titleState;
     }
 
 
@@ -109,23 +111,33 @@ public class GamePanel
         }
     }
 
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        // TITLE SCREEN
+        //TITLE SCREEN
+        if(gameState == titleState ){
+            ui.draw(g2);
+        }//Other
+            else{
+            // TILE
+            tileM.draw(g2);
 
-
-        tileM.draw(g2);
-
-        // OBJECT
-        for(int i = 0;i<obj.length;i++){
-            if(obj[i] != null){
-                obj[i].draw(g2, this);
+            // OBJECT
+            for(int i = 0;i<obj.length;i++){
+                if(obj[i] != null){
+                    obj[i].draw(g2, this);
+                }
             }
-        }
 
-        player.draw(g2);
+            //PLAYER
+            player.draw(g2);
+
+            //UI
+            ui.draw(g2);
+
+        }
 
         g2.dispose();
     }
