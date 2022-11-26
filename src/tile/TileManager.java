@@ -8,8 +8,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import main.GamePanel;
-
-
+import main.UtilityTool;
 
 
 public class TileManager
@@ -25,84 +24,58 @@ public class TileManager
         this.mapTileNum = new int[50][50];
 
         getTileImage();
-        loadMap("/res/maps/cave01.txt");
+        loadMap("/res/maps/cave02.txt");
     }
 
 
 
     public void getTileImage() {
+            setUp(0, "/res/tiles/cave02/black.png", true);
+            setUp(1, "/res/tiles/cave02/floor_conner1.png", false);
+            setUp(2, "/res/tiles/cave02/floor_conner2.png", false);
+            setUp(3, "/res/tiles/cave02/floor_conner3.png", false);
+            setUp(4, "/res/tiles/cave02/floor_conner4.png", false);
+            setUp(5, "/res/tiles/cave02/floor_top.png", false);
+            setUp(6, "/res/tiles/cave02/floor_left.png", false);
+            setUp(7, "/res/tiles/cave02/floor_bot.png", false);
+            setUp(8, "/res/tiles/cave02/floor_right.png", false);
+            setUp(9, "/res/tiles/cave02/floor.png", false);
+            setUp(10, "/res/tiles/cave02/spiral1.png", false);
+            setUp(11, "/res/tiles/cave02/spiral2.png", false);
+            setUp(12, "/res/tiles/cave02/circle1.png", false);
+            setUp(13, "/res/tiles/cave02/square1.png", false);
+            setUp(14, "/res/tiles/cave02/square2.png", false);
+            setUp(15, "/res/tiles/cave02/circle2.png", false);
+            setUp(16, "/res/tiles/cave02/hole.png", true);
+            setUp(17, "/res/tiles/cave02/grass.png", false);
+            setUp(18, "/res/tiles/cave02/square3.png", false);
+            setUp(19, "/res/tiles/cave02/grey.png", true);
+            setUp(20, "/res/tiles/cave02/cave1.png", true);
+            setUp(21, "/res/tiles/cave02/cave2.png", true);
+            setUp(22, "/res/tiles/cave02/cave3.png", true);
+            setUp(23, "/res/tiles/cave02/cave4.png", true);
+            setUp(24, "/res/tiles/cave02/wall_top.png", true);
+            setUp(25, "/res/tiles/cave02/wall_left.png", true);
+            setUp(26, "/res/tiles/cave02/wall_right.png", true);
+            setUp(27, "/res/tiles/cave02/wall_bot1.png", true);
+            setUp(28, "/res/tiles/cave02/wall_bot2.png", true);
+            setUp(29, "/res/tiles/cave02/wall_conner1.png", true);
+            setUp(30, "/res/tiles/cave02/wall_conner2.png", true);
+            setUp(31, "/res/tiles/cave02/wall_conner3.png", true);
+            setUp(32, "/res/tiles/cave02/wall_conner4.png", true);
+            setUp(33, "/res/tiles/cave02/wall1.png", true);
+            setUp(34, "/res/tiles/cave02/wall2.png", true);
+            setUp(35, "/res/tiles/cave02/wall3.png", true);
+            setUp(36, "/res/tiles/cave02/wall4.png", true);
+    }
+    public void setUp(int index, String imagePath, boolean collision){
+        UtilityTool uTool = new UtilityTool();
         try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/void.png")));
-            tile[0].collision = true;
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_top_1.png")));
-            tile[1].collision = true;
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_4.png")));
-            tile[2].collision = true;
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_corner_left_top.png")));
-            tile[3].collision = true;
-
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_left.png")));
-            tile[4].collision = true;
-
-            tile[5] = new Tile();
-            tile[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_corner_right_top.png")));
-            tile[5].collision = true;
-
-            tile[6] = new Tile();
-            tile[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_right.png")));
-            tile[6].collision = true;
-
-            tile[7] = new Tile();
-            tile[7].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_left.png")));
-            tile[7].collision = true;
-
-            tile[8] = new Tile();
-            tile[8].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_2.png")));
-            tile[8].collision = true;
-
-            tile[9] = new Tile();
-            tile[9].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
-            tile[9].collision = true;
-
-            tile[10] = new Tile();
-            tile[10].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
-
-
-            tile[11] = new Tile();
-            tile[11].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
-
-
-            tile[12] = new Tile();
-            tile[12].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
-
-
-            tile[13] = new Tile();
-            tile[13].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_1.png")));
-
-
-            tile[14] = new Tile();
-            tile[14].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_bot.png")));
-
-
-            tile[15] = new Tile();
-            tile[15].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/floor_right.png")));
-
-
-            tile[16] = new Tile();
-            tile[16].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/cave01/wall_right.png")));
-            tile[16].collision = true;
-
-        }
-        catch (IOException e) {
+            tile[index] = new Tile();
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+        }catch (IOException e){
             e.printStackTrace();
         }
     }

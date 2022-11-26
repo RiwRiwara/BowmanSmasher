@@ -9,26 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="- Improve Title Screen&#10;- Add Song&#10;- Add animated Title">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/BowmanVer1_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_BOX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_DOOR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/objects/Box.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/objects/Door.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Add Mob and AI&#10;- Custom font">
+      <change afterPath="$PROJECT_DIR$/src/entity/NPC_Dad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/UtilityTool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_up2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_BOX.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_BOX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_DOOR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_DOOR.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_HEART.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_HEART.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_KEY.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_KEY.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/maps/cave01.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/cave01.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/objects/key - Copy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/objects/key.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/objects/key.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,26 +69,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "R:/Motari Team/HILOGAME/HiLOIJ/HighAndLowVer2",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gant"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/ProjectBowman/BowmanVer1/src/res/Mob/zombie&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gant&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\ProjectBowman\BowmanVer1\src\res\Mob\zombie" />
+      <recent name="C:\Users\Admin\Desktop\ProjectBowman\BowmanVer1\src\res\sound" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="res" />
       <recent name="res.tiles" />
       <recent name="res.cave01" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="entity" />
       <recent name="object" />
     </key>
   </component>
@@ -109,7 +120,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7f5e20c3-8497-4b8f-897f-094e3d11a488" name="Changes" comment="" />
+      <changelist id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Add Mob and AI&#10;- Custom font" />
       <created>1669036371361</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -185,7 +196,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669119381780</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- Add Object Reactive">
+      <created>1669463822764</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1669463822764</updated>
+    </task>
+    <task id="LOCAL-00012" summary="- Add Mob and AI&#10;- Custom font">
+      <created>1669490746612</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669490746612</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,6 +245,8 @@
     <MESSAGE value="Add pause Function,&#10;Add Object Interactive Function" />
     <MESSAGE value="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause" />
     <MESSAGE value="- Improve Title Screen&#10;- Add Song&#10;- Add animated Title" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Improve Title Screen&#10;- Add Song&#10;- Add animated Title" />
+    <MESSAGE value="- Add Object Reactive" />
+    <MESSAGE value="- Add Mob and AI&#10;- Custom font" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Add Mob and AI&#10;- Custom font" />
   </component>
 </project>
