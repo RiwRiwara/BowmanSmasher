@@ -17,22 +17,69 @@ public class KeyHandler implements KeyListener {
     public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
+
         int code = e.getKeyCode();
 
-        if (code == 87) {
-            this.upPressed = true;
+        //Title State
+        if(gp.gameState == gp.titleState) {
+            if(gp.ui.titleScreenState == 0) {
+                if (code == KeyEvent.VK_S) {
+                    gp.ui.numCommand++;
+                    if (gp.ui.numCommand > 2) {
+                        gp.ui.numCommand = 0;
+                    }
+                }
+                if (code == KeyEvent.VK_W) {
+                    gp.ui.numCommand--;
+                    if (gp.ui.numCommand < 0) {
+                        gp.ui.numCommand = 2;
+                    }
+                }
+                //Take action in title
+                if (code == KeyEvent.VK_ENTER) {
+                    switch (gp.ui.numCommand) {
+                        case 0:
+                            gp.gameState = gp.playState;
+                            gp.playMusic(0);
+                            break;
+                        case 1:
+                            //Setting
+                            break;
+                        case 2:
+                            System.exit(0);
+                            break;
+                    }
+                }
+            }
+
         }
-        if (code == 83) {
-            this.downPressed = true;
+
+        //Play State
+        if(gp.gameState == gp.playState) {
+            if (code == KeyEvent.VK_W) {
+                this.upPressed = true;
+            }
+            if (code == KeyEvent.VK_S) {
+                this.downPressed = true;
+            }
+            if (code == KeyEvent.VK_A) {
+                this.leftPressed = true;
+            }
+            if (code == KeyEvent.VK_D) {
+                this.rightPressed = true;
+            }
+            //Increase Speed
+            if(code == KeyEvent.VK_UP){
+                gp.player.speed++;
+            }
+            if(code == KeyEvent.VK_DOWN){
+                gp.player.speed--;
+            }
+
         }
-        if (code == 65) {
-            this.leftPressed = true;
-        }
-        if (code == 68) {
-            this.rightPressed = true;
-        }
-        if(code == KeyEvent.VK_P){
-            if(gp.gameState == gp.playState){
+
+        if (code == KeyEvent.VK_P) {
+            if (gp.gameState == gp.playState) {
                 gp.gameState = gp.pauseState;
 
             } else if (gp.gameState == gp.pauseState) {
@@ -40,16 +87,8 @@ public class KeyHandler implements KeyListener {
 
             }
         }
-        if(code == KeyEvent.VK_ENTER){
-            gp.gameState = gp.playState;
-        }
-        if(code == KeyEvent.VK_ESCAPE){
-            if(gp.gameState== gp.playState){
-                gp.gameState = gp.titleState;
-            }else{
-                System.exit(0);
-            }
-        }
+
+
 
     }
 
@@ -58,16 +97,16 @@ public class KeyHandler implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
 
-        if (code == 87) {
+        if (code == KeyEvent.VK_W) {
             this.upPressed = false;
         }
-        if (code == 83) {
+        if (code == KeyEvent.VK_S) {
             this.downPressed = false;
         }
-        if (code == 65) {
+        if (code == KeyEvent.VK_A) {
             this.leftPressed = false;
         }
-        if (code == 68)
+        if (code == KeyEvent.VK_D)
             this.rightPressed = false;
     }
 }

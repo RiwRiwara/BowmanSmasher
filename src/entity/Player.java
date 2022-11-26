@@ -18,6 +18,7 @@ public class Player extends Entity {
     int hasKey = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
 
@@ -39,12 +40,16 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         // TODO: 22/11/2565 Player start point(X, Y) 
-        int startX = 15;
-        int startY = 42;
+        int startX = 8;
+        int startY = 40;
         worldX = gp.tileSize * startX;
         worldY = gp.tileSize * startY;
         this.speed = 3;
         this.direction = "down";
+
+        //Player Status
+        maxLife = 6;
+        life = maxLife;
     }
 
 
@@ -91,6 +96,9 @@ public class Player extends Entity {
             int objIndex =  gp.cChecker.checkObject(this, true);
             pickUpObj(objIndex);
 
+            //Check Npc collision
+            int mobIndex = gp.cChecker.checkEntity(this, gp.mob);
+
 
             //IF collision == False, Player can move
             if (!collisionOn) {
@@ -119,14 +127,15 @@ public class Player extends Entity {
             String objName = gp.obj[index].name;
             switch (objName){
                 case "Key":
+                    gp.playSE(1);
                     hasKey++;
                     gp.obj[index] = null;
                     break;
                 case "Door":
                     if(hasKey>0){
+                        gp.playSE(2);
                         gp.obj[index] = null;
                         hasKey--;
-
                     }
                     break;
             }

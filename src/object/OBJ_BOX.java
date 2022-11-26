@@ -12,5 +12,6 @@ public class OBJ_BOX extends SuperObject{
         }catch (IOException e){
             e.printStackTrace();
         }
+        collision = true;
     }
 }
