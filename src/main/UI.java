@@ -1,7 +1,7 @@
 package main;
 
+import entity.Entity;
 import object.OBJ_HEART;
-import object.SuperObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,12 +10,15 @@ import java.io.InputStream;
 
 public class UI {
     GamePanel gp;
+    Graphics2D g2;
     Font pixelFont;
-    Font arial_40, arial_14, arial_60;
     public BufferedImage heart_full, heart_half, heart_blank;
     public int ImageCount = 1, ChangeImgCount = 0;
-    public int numCommand = 0;
-    public int titleScreenState = 0; // 0 First Screen, 1 Second Screen
+    public int numCommand = 0, messageCounter = 0;
+    public int titleScreenState = 0; // 0 First Screen, 1 Setting
+    public String message;
+    public boolean messageOn = false, musicOn = true;
+    public String currentDialogue = "";
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -29,20 +32,24 @@ public class UI {
         }
 
         //Create HUD
-        SuperObject heart = new OBJ_HEART(gp);
+        Entity heart = new OBJ_HEART(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
     }
 
-
+    public void showMessage(String text){
+        message = text;
+        messageOn = true;
+    }
 
     public void draw(Graphics2D g2){
+        this.g2 = g2;
         g2.setColor(Color.white);
         g2.setFont(pixelFont);
         // TITLE STATE
         if(gp.gameState == gp.titleState){
-            drawTitleScreen(g2);
+            drawTitleScreen();
         }
 
         //PLAY STATE
@@ -51,21 +58,63 @@ public class UI {
             g2.drawString("CAVE 01", 45, 30);
             g2.drawString(String.format("(%d, %d)",gp.player.worldX/48, gp.player.worldY/48+1), 50, 50);
             g2.drawString(String.format("Speed: %d",gp.player.speed), 50, 70);
-            drawPlayerLife(g2);
+
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 15));
+            g2.drawString(String.format("KEY: %d",gp.player.hasKey), 650, 30);
+            drawPlayerLife();
         }
         //Pause STATE
         if(gp.gameState == gp.pauseState){
-            drawPause(g2);
+            drawPause();
+        }
+        // If getKey
+        if(messageOn){
+            g2.setFont(g2.getFont().deriveFont(20F));
+            g2.drawString(message, gp.tileSize/2, gp.tileSize*5);
+            messageCounter++;
+            if(messageCounter>120){
+                messageCounter = 0;
+                messageOn = false;
+            }
+        }
+        //Dialogue State
+        if(gp.gameState == gp.dialogueState){
+            drawDialogueScreen();
         }
     }
 
-    public void drawPause(Graphics2D g2){
+    public void drawPause(){
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50));
         g2.drawString("Pause", gp.screenWidth/2-100, gp.screenHeight/2);
     }
+    public void drawDialogueScreen(){
+
+        // WINDOW
+        int x = gp.tileSize*2;
+        int y = gp.tileSize/2;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*4;
+        drawSubWindow(x, y, width, height);
 
 
-    public void drawTitleScreen(Graphics2D g2){
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        g2.drawString(currentDialogue, x, y);
+    }
+    public void drawSubWindow(int x, int y, int width, int height){
+        Color c = new Color(0,0,0, 100);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y,width, height, 35, 35);
+
+        c = new Color(255, 255,255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5,y+5, width-10, height-10,25,25);
+    }
+
+
+    public void drawTitleScreen(){
         if(titleScreenState == 0 ) {
             //MAIN TITlE
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50));
@@ -127,13 +176,20 @@ public class UI {
             }
         } else if (titleScreenState == 1) {
 
-            //CLASS SELECTION SCREEN
+            //CLASS SETTING
             g2.setColor(Color.white);
-            g2.setFont(new Font("Arial", Font.PLAIN, 28));
-            //...
+            g2.setFont(new Font("Arial", Font.BOLD, 30));
+            String musicStatus = "ON";
+            if(!musicOn) {
+                musicStatus = "OFF";
+            }
+            g2.drawString(String.format("Music : %s", musicStatus), gp.screenWidth/2-100, gp.screenHeight/2-50);
+            g2.drawString("<Enter>", gp.screenWidth/2-100, gp.screenHeight/2);
+            g2.setFont(new Font("Arial", Font.BOLD, 20));
+            g2.drawString("BACK(ESC)", 50, gp.screenHeight-50);
         }
     }
-    public void drawPlayerLife(Graphics2D g2){
+    public void drawPlayerLife(){
         int x = 10, y =80, i = 0;
         //Draw Blank Heart
         while (i  < gp.player.maxLife/2){

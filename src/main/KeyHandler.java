@@ -4,11 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    public boolean upPressed;
-    public boolean downPressed;
-    public boolean leftPressed;
-    public boolean rightPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
     GamePanel gp;
+
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -24,12 +22,14 @@ public class KeyHandler implements KeyListener {
         if(gp.gameState == gp.titleState) {
             if(gp.ui.titleScreenState == 0) {
                 if (code == KeyEvent.VK_S) {
+                    gp.playSE(3);
                     gp.ui.numCommand++;
                     if (gp.ui.numCommand > 2) {
                         gp.ui.numCommand = 0;
                     }
                 }
                 if (code == KeyEvent.VK_W) {
+                    gp.playSE(3);
                     gp.ui.numCommand--;
                     if (gp.ui.numCommand < 0) {
                         gp.ui.numCommand = 2;
@@ -39,16 +39,32 @@ public class KeyHandler implements KeyListener {
                 if (code == KeyEvent.VK_ENTER) {
                     switch (gp.ui.numCommand) {
                         case 0:
-                            gp.playSE(3);
+                            gp.playSE(1);
                             gp.gameState = gp.playState;
-                            gp.playMusic(0);
+                            if(gp.ui.musicOn) {
+                                gp.playMusic(0);
+                            }
                             break;
                         case 1:
-                            //Setting
+                            gp.playSE(1);
+                            gp.ui.titleScreenState = 1;
                             break;
                         case 2:
                             System.exit(0);
                             break;
+                    }
+                }
+            } else if (gp.ui.titleScreenState == 1) {
+                if (code == KeyEvent.VK_ESCAPE) {
+                    gp.playSE(3);
+                    gp.ui.titleScreenState = 0;
+                }
+                if (code == KeyEvent.VK_ENTER) {
+                    gp.playSE(3);
+                    if(gp.ui.musicOn) {
+                        gp.ui.musicOn = false;
+                    }else{
+                        gp.ui.musicOn = true;
                     }
                 }
             }
@@ -69,6 +85,9 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_D) {
                 this.rightPressed = true;
             }
+            if (code == KeyEvent.VK_ENTER) {
+                enterPressed = true;
+            }
             //Increase Speed
             if(code == KeyEvent.VK_UP){
                 gp.player.speed++;
@@ -79,12 +98,14 @@ public class KeyHandler implements KeyListener {
 
             //Return to Title
             if(code == KeyEvent.VK_ESCAPE){
-                gp.music.stop();
+                if(gp.ui.musicOn) {
+                    gp.music.stop();
+                }
                 gp.gameState = gp.titleState;
             }
-
         }
 
+        //Pause State
         if (code == KeyEvent.VK_P) {
             if (gp.gameState == gp.playState) {
                 gp.gameState = gp.pauseState;
@@ -92,6 +113,13 @@ public class KeyHandler implements KeyListener {
             } else if (gp.gameState == gp.pauseState) {
                 gp.gameState = gp.playState;
 
+            }
+        }
+        //Dialogue State
+        //Dialogue State
+        if(gp.gameState == gp.dialogueState){
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.playState;
             }
         }
 

@@ -10,21 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Add Mob and AI&#10;- Custom font">
-      <change afterPath="$PROJECT_DIR$/src/entity/NPC_Dad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/UtilityTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_down1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_down2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_idle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_left1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_left2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_right1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_right2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_up1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/dad/dad_up2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/NPC_Dad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPC_Dad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
@@ -34,8 +23,9 @@
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_DOOR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_DOOR.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_HEART.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_HEART.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_KEY.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_KEY.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/SuperObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/SuperObject.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sound/gamestart.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/sound/menuselect.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/menuselect.wav" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +200,28 @@
       <option name="project" value="LOCAL" />
       <updated>1669490746612</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="- Add Mob and AI&#10;- Custom font">
+      <created>1669557384481</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669557384481</updated>
+    </task>
+    <task id="LOCAL-00014" summary="- Add Mob and AI&#10;- Custom font">
+      <created>1669557433404</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669557433404</updated>
+    </task>
+    <task id="LOCAL-00015" summary="- Add Mob and AI&#10;- Custom font">
+      <created>1669557470597</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669557470597</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +257,7 @@
     <MESSAGE value="Add game state&#10;- Title screen&#10;- Play screen&#10;- Pause" />
     <MESSAGE value="- Improve Title Screen&#10;- Add Song&#10;- Add animated Title" />
     <MESSAGE value="- Add Object Reactive" />
+    <MESSAGE value="-Add dad NPC and make npc collision" />
     <MESSAGE value="- Add Mob and AI&#10;- Custom font" />
     <option name="LAST_COMMIT_MESSAGE" value="- Add Mob and AI&#10;- Custom font" />
   </component>

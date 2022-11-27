@@ -8,9 +8,11 @@ import java.util.Objects;
 import java.util.Random;
 
 public class NPC_Dad extends Entity{
+    public int dialogueIndex = 0;
     public NPC_Dad(GamePanel gp){
         super(gp);
         speed = 1;
+        setDialogue();
         getImage();
     }
     public void getImage() {
@@ -22,6 +24,11 @@ public class NPC_Dad extends Entity{
             right2 = setup("/res/Mob/dad/dad_right2.png");
             up1 = setup("/res/Mob/dad/dad_up1.png");
             up2 = setup("/res/Mob/dad/dad_up2.png");
+    }
+    public void setDialogue (){
+        dialogues[0] = "Hey, son.";
+        dialogues[1] = "What happen?";
+        dialogues[2] = "Why you scare?";
     }
 
     public void setAction() {
@@ -41,7 +48,18 @@ public class NPC_Dad extends Entity{
             if (i > 75 && i <= 100) {
                 direction = "right";
             }
+            checkCanPass();
             actionLockCounter = 0;
         }
     }
+    public void speak(){
+        dialogueIndex = new Random().nextInt(3);
+        gp.ui.currentDialogue = dialogues[dialogueIndex];
+    }
+    public void checkCanPass(){
+        if(gp.npc[0].worldX == gp.tileSize * 10 && gp.npc[0].worldY == gp.tileSize * 40){
+            direction = "left";
+        }
+    }
+
 }

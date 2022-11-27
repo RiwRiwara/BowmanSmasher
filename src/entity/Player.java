@@ -16,7 +16,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    int hasKey = 0;
+    public int hasKey = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -136,6 +136,7 @@ public class Player extends Entity {
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[index] = null;
+                    gp.ui.showMessage("get key!");
                     break;
                 case "Door":
                     if(hasKey>0){
@@ -147,10 +148,30 @@ public class Player extends Entity {
             }
         }
     }
+
     public void interactNPC(int i){
         if(i != 999){
-            System.out.println("hit Npc");
+            if(gp.keyH.enterPressed) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+                switch (direction){
+                    case "down":
+                        gp.npc[i].direction = "up";
+                        break;
+                    case "up":
+                        gp.npc[i].direction = "down";
+                        break;
+                    case "right":
+                        gp.npc[i].direction = "left";
+                        break;
+                    case "left":
+                        gp.npc[i].direction = "right";
+                        break;
+
+                }
+            }
         }
+        gp.keyH.enterPressed = false;
     }
 
     public void draw(Graphics2D g2) {

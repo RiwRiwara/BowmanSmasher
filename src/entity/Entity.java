@@ -12,15 +12,16 @@ public class Entity {
     public GamePanel gp;
     public int worldX, worldY, speed;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    // TODO: 27/11/2565 Default Direction
-    public String direction = "down";
+    public String direction = "down";// TODO: 27/11/2565 Default Direction
     public int spriteCounter = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX,  solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
-    String dialogues[] = new String[20];
+    public BufferedImage image, image2, image3;
+    public String name;
+    public String dialogues[] = new String[20];
 
     //Character Status
     public int maxLife;
@@ -31,6 +32,7 @@ public class Entity {
     }
 
     public void setAction(){}
+    public void speak(){}
     public void update(){
         setAction();
         collisionOn = false;
