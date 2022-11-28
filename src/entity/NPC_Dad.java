@@ -11,6 +11,7 @@ public class NPC_Dad extends Entity{
     public int dialogueIndex = 0;
     public NPC_Dad(GamePanel gp){
         super(gp);
+        type = 1;
         speed = 1;
         setDialogue();
         getImage();

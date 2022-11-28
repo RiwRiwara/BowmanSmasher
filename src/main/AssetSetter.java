@@ -1,6 +1,7 @@
 package main;
 
 import entity.NPC_Dad;
+import monster.Zombie;
 import object.OBJ_BOX;
 import object.OBJ_DOOR;
 import object.OBJ_KEY;
@@ -30,7 +31,28 @@ public class AssetSetter {
         gp.npc[0].worldX = gp.tileSize * 5;
         gp.npc[0].worldY = gp.tileSize * 40;
     }
-    public void setMob() {
+    public void setMonster() {
+        gp.monster[0] = new Zombie(gp);
+        gp.monster[0].worldX = gp.tileSize * 43;
+        gp.monster[0].worldY = gp.tileSize * 44;
+
+        gp.monster[1] = new Zombie(gp);
+        gp.monster[1].worldX = gp.tileSize * 39;
+        gp.monster[1].worldY = gp.tileSize * 42;
+
+        gp.monster[2] = new Zombie(gp);
+        gp.monster[2].worldX = gp.tileSize * 40;
+        gp.monster[2].worldY = gp.tileSize * 42;
+
+        gp.monster[3] = new Zombie(gp);
+        gp.monster[3].worldX = gp.tileSize * 42;
+        gp.monster[3].worldY = gp.tileSize * 42;
+
+        gp.monster[4] = new Zombie(gp);
+        gp.monster[4].worldX = gp.tileSize * 43;
+        gp.monster[4].worldY = gp.tileSize * 43;
+
+
 
     }
 }

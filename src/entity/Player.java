@@ -1,7 +1,6 @@
 package entity;
 
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -40,7 +39,8 @@ public class Player extends Entity {
 
 
     public void setDefaultValues() {
-        // TODO: 22/11/2565 Player start point(X, Y) 
+        // TODO: 22/11/2565 Player start point(X, Y)
+        type = 0;
         int startX = 5;
         int startY = 32;
         worldX = gp.tileSize * startX;
@@ -78,7 +78,7 @@ public class Player extends Entity {
 
     public void update() {
         if (keyH.upPressed || keyH.downPressed ||
-                keyH.leftPressed || keyH.rightPressed) {
+                keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
 
             if (keyH.upPressed) {
                 direction = "up";
@@ -105,14 +105,19 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            //Check Monster collision
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
+            //Check Event
 
             //IF collision == False, Player can move
-            if (!collisionOn) {
+            if (!collisionOn && !keyH.enterPressed) {
                 switch (direction) {
-                    case "up" : worldY -= speed;break;
-                    case "down" : worldY += speed;break;
-                    case "left" : worldX -= speed;break;
-                    case "right" : worldX += speed;break;
+                    case "up" -> worldY -= speed;
+                    case "down" -> worldY += speed;
+                    case "left" -> worldX -= speed;
+                    case "right" -> worldX += speed;
                 }
             }
             spriteCounter++;
@@ -125,7 +130,24 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
+        }else{
+            standCounter++;
+            if(standCounter == 20){
+                spriteNum = 1;
+                standCounter = 0;
+            }
         }
+
+        //need to be outside of key statement
+        if(invincible == true){
+            invincibleCounter++;
+            if(invincibleCounter > 60){
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
+
     }
 
     public void pickUpObj(int index){
@@ -173,6 +195,15 @@ public class Player extends Entity {
         }
         gp.keyH.enterPressed = false;
     }
+    public void contactMonster(int i){
+        if(i!=999){
+            if(!invincible) {
+                life -= 1;
+                invincible = true;
+            }
+
+        }
+    }
 
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
@@ -210,6 +241,13 @@ public class Player extends Entity {
                 }
             }
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+        if(invincible){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
+        g2.drawImage(image, screenX, screenY,null);
+        //Reset
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
+
 }

@@ -22,6 +22,10 @@ public class Entity {
     public BufferedImage image, image2, image3;
     public String name;
     public String dialogues[] = new String[20];
+    public  int standCounter = 0;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
+    public int type; //0 = player, 1 = npc, 2 = monster
 
     //Character Status
     public int maxLife;
@@ -33,19 +37,29 @@ public class Entity {
 
     public void setAction(){}
     public void speak(){}
+
     public void update(){
         setAction();
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
+        gp.cChecker.checkEntity(this, gp.monster);
+        gp.cChecker.checkEntity(this, gp.npc);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+        if(this.type == 2 && contactPlayer){
+            if(!gp.player.invincible) {
+                gp.player.life -=1 ;
+                gp.player.invincible = true;
+            }
+        }
+
 
         if (!collisionOn) {
             switch (direction) {
-                case "up" : worldY -= speed;break;
-                case "down" : worldY += speed;break;
-                case "left" : worldX -= speed;break;
-                case "right" : worldX += speed;break;
+                case "up" -> worldY -= speed;
+                case "down" -> worldY += speed;
+                case "left" -> worldX -= speed;
+                case "right" -> worldX += speed;
             }
         }
         spriteCounter++;
