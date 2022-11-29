@@ -24,9 +24,9 @@ public class UI {
         this.gp = gp;
 
         try {
-            InputStream is = getClass().getResourceAsStream("/res/fonts/joystix monospace.ttf");
+            InputStream is = getClass().getResourceAsStream("/res/fonts/Weiholmir_regular.ttf");
             pixelFont = Font.createFont(Font.TRUETYPE_FONT, is);
-            //anoter Font
+            //another Font
         }catch (FontFormatException | IOException e){
             e.printStackTrace();
         }
@@ -81,6 +81,31 @@ public class UI {
         if(gp.gameState == gp.dialogueState){
             drawDialogueScreen();
         }
+        //Character State
+        if(gp.gameState == gp.characterState){
+            drawCharacterScreen();
+        }
+    }
+
+    public void drawCharacterScreen() {
+        //Create A FRAME
+        final int frameX = gp.tileSize*2;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize*5;
+        final int frameHeight = gp.tileSize*10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        //Text
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(15F));
+
+        int textX = frameX + 20;
+        int textY = frameY + gp.tileSize;
+        final int lineHeight = 32;
+        // Name
+        g2.drawString(String.format("Heart        %d/%d",gp.player.life, gp.player.maxLife), textX, textY);
+        g2.drawImage(gp.player.currentWeapon.down1, textX+50,textY+20, gp.tileSize*2, gp.tileSize*2, null);
+
+
     }
 
     public void drawPause(){
@@ -96,11 +121,12 @@ public class UI {
         int height = gp.tileSize*4;
         drawSubWindow(x, y, width, height);
 
-
         x += gp.tileSize;
         y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
         g2.drawString(currentDialogue, x, y);
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30F));
+        g2.drawString(">",x*4+gp.tileSize,y*3+gp.tileSize/2);
     }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(0,0,0, 100);
@@ -117,10 +143,10 @@ public class UI {
     public void drawTitleScreen(){
         if(titleScreenState == 0 ) {
             //MAIN TITlE
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 50));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 45));
             String text = "BOWMAN SMASHER";
-            int x = 80;
-            int y = 140;
+            int x = gp.tileSize*2;
+            int y = gp.tileSize*3;
             //SHADOW
             g2.setColor(Color.BLUE);
             g2.drawString(text, x + 5, y + 5);
@@ -178,14 +204,14 @@ public class UI {
 
             //CLASS SETTING
             g2.setColor(Color.white);
-            g2.setFont(new Font("Arial", Font.BOLD, 30));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30));
             String musicStatus = "ON";
             if(!musicOn) {
                 musicStatus = "OFF";
             }
             g2.drawString(String.format("Music : %s", musicStatus), gp.screenWidth/2-100, gp.screenHeight/2-50);
             g2.drawString("<Enter>", gp.screenWidth/2-100, gp.screenHeight/2);
-            g2.setFont(new Font("Arial", Font.BOLD, 20));
+            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 20));
             g2.drawString("BACK(ESC)", 50, gp.screenHeight-50);
         }
     }

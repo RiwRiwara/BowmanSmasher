@@ -3,19 +3,20 @@ package monster;
 import entity.Entity;
 import main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Random;
 
 public class Zombie extends Entity {
+    int tempSpeed;
     public Zombie(GamePanel gp){
         super(gp);
 
+        //STATUs
         type = 2;
         name = "Zombie";
-        speed = 2;
+        speed = 1;
+        tempSpeed = speed;
         maxLife = 3;
+        attack = 2;
         life = maxLife;
 
         solidArea.x = 3;
@@ -24,6 +25,10 @@ public class Zombie extends Entity {
         solidArea.height = 40;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+
+        //Sound
+        getDamageSound = getClass().getResource("/res/sound/zombieDamage.wav");
+        deadSound = getClass().getResource("/res/sound/zombieDead.wav");
 
         getImage();
     }
@@ -56,7 +61,13 @@ public class Zombie extends Entity {
             if (i > 75 && i <= 100) {
                 direction = "right";
             }
+            speed = tempSpeed;
             actionLockCounter = 0;
         }
+    }
+    public void damageReaction(){
+        actionLockCounter = 0;
+        tempSpeed++;
+        speed = 0;
     }
 }

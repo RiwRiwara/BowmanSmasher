@@ -5,6 +5,7 @@ import monster.Zombie;
 import object.OBJ_BOX;
 import object.OBJ_DOOR;
 import object.OBJ_KEY;
+import object.OBJ_WARP;
 
 public class AssetSetter {
     GamePanel gp;
@@ -23,6 +24,10 @@ public class AssetSetter {
         gp.obj[2] = new OBJ_DOOR(gp);
         gp.obj[2].worldX = 28 * gp.tileSize;
         gp.obj[2].worldY = 47 * gp.tileSize;
+
+        gp.obj[3] = new OBJ_WARP(gp);
+        gp.obj[3].worldX = 4 * gp.tileSize;
+        gp.obj[3].worldY = 40 * gp.tileSize;
 
 
     }
@@ -51,6 +56,8 @@ public class AssetSetter {
         gp.monster[4] = new Zombie(gp);
         gp.monster[4].worldX = gp.tileSize * 43;
         gp.monster[4].worldY = gp.tileSize * 43;
+
+
 
 
 

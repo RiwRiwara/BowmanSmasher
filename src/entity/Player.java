@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import main.GamePanel;
 import main.KeyHandler;
+import object.OBJ_Bowman;
 
 
 public class Player extends Entity {
@@ -12,6 +13,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
+    public boolean attackCanceled = false;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -39,10 +41,9 @@ public class Player extends Entity {
 
 
     public void setDefaultValues() {
-        // TODO: 22/11/2565 Player start point(X, Y)
-        type = 0;
         int startX = 5;
         int startY = 32;
+        type = 0;
         worldX = gp.tileSize * startX;
         worldY = gp.tileSize * startY;
         this.speed = 3;
@@ -51,8 +52,18 @@ public class Player extends Entity {
         //Player Status
         maxLife = 6;
         life = maxLife;
+        currentWeapon = new OBJ_Bowman(gp);
+        attack = getAttack(currentWeapon);
+
+
+        //Sound
+        getDamageSound = getClass().getResource("/res/sound/BowDamage.wav");
+        attackSound = getClass().getResource("/res/sound/smashBow.wav");
     }
 
+    public int getAttack(Entity weapon){
+        return  weapon.attackValue;
+    }
 
     public void getPlayerImage() {
         down1 = setup("/res/player/boman_down1.png");
@@ -125,6 +136,15 @@ public class Player extends Entity {
                     case "right" -> worldX += speed;
                 }
             }
+
+            if(keyH.enterPressed && !attackCanceled) {
+                soundFX(attackSound);
+                attacking = true;
+                spriteCounter = 0;
+            }
+            attackCanceled = false;
+            gp.keyH.enterPressed = false;
+
             spriteCounter++;
             if (spriteCounter > 12) {
                 if (spriteNum == 1) {
@@ -168,7 +188,7 @@ public class Player extends Entity {
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
 
-            //ADjust player attack area
+            //Adjust player attack area
             switch (direction) {
                 case "up" -> worldY -= attackArea.height;
                 case "down" -> worldY += attackArea.height;
@@ -185,8 +205,6 @@ public class Player extends Entity {
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
-
-
 
         }
         if(spriteCounter >25 ){
@@ -213,6 +231,12 @@ public class Player extends Entity {
                         hasKey--;
                     }
                     break;
+                case "Warp":
+                    gp.ui.currentDialogue = "Teleport!";
+                    gp.gameState = gp.dialogueState;
+                    gp.player.worldY = 40 * gp.tileSize;
+                    gp.player.worldX = 39 * gp.tileSize;
+
             }
         }
     }
@@ -220,6 +244,7 @@ public class Player extends Entity {
     public void interactNPC(int i){
         if(gp.keyH.enterPressed){
             if(i != 999){
+                attackCanceled = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
 
@@ -230,6 +255,7 @@ public class Player extends Entity {
                     case "left" -> gp.npc[i].direction = "right";
                 }
             }else {
+                soundFX(attackSound);
                 attacking = true;
             }
         }
@@ -238,12 +264,16 @@ public class Player extends Entity {
 
     public void damageMonster(int i){
         if(i!=999){
-            if(gp.monster[i].invincible == false){
-                gp.monster[i].life -=1;
+            if(!gp.monster[i].invincible){
+                gp.monster[i].damageReaction();
+                gp.monster[i].life -= attack;
                 gp.monster[i].invincible = true;
 
                 if(gp.monster[i].life <= 0){
-                    gp.monster[i] = null;
+                    soundFX(gp.monster[i].deadSound);
+                    gp.monster[i].dying = true;
+                }else{
+                    soundFX(gp.monster[i].getDamageSound);
                 }
             }
         }
@@ -251,7 +281,8 @@ public class Player extends Entity {
     public void contactMonster(int i){
         if(i!=999){
             if(!invincible) {
-                life -= 1;
+                soundFX(getDamageSound);
+                life -= gp.monster[i].attack;
                 invincible = true;
             }
 

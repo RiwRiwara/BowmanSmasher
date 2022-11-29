@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable
     public final int tileSize = originalTileSize * scale;
     public final int screenWidth = 768;
     public final int screenHeight = 576;
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
 
     //SYSTEMS
     int FPS = 60;
@@ -47,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int characterState = 4;
 
     public GamePanel() {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -112,7 +115,12 @@ public class GamePanel extends JPanel implements Runnable
             }
             for (int i = 0; i < monster.length; i++) {
                 if(monster[i]!=null) {
-                    monster[i].update();
+                    if(monster[i].alive && !monster[i].dying){
+                        monster[i].update();
+                    }
+                    if(!monster[i].alive){
+                        monster[i] = null;
+                    }
                 }
             }
         }
