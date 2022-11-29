@@ -17,6 +17,8 @@ public class Sound
         soundURL[1] = getClass().getResource("/res/sound/pickKey.wav");
         soundURL[2] = getClass().getResource("/res/sound/doorOpen.wav");
         soundURL[3] = getClass().getResource("/res/sound/menuselect.wav");
+        soundURL[4] = getClass().getResource("/res/sound/selectinv.wav");
+        soundURL[5] = getClass().getResource("/res/sound/teleport.wav");
 
 
     }

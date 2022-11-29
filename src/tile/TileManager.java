@@ -67,7 +67,6 @@ public class TileManager
             setUp(34, "/res/tiles/cave02/wall2.png", true);
             setUp(35, "/res/tiles/cave02/wall3.png", true);
             setUp(36, "/res/tiles/cave02/wall4.png", true);
-            setUp(37, "/res/tiles/cave02/warp.png", false);
 
     }
     public void setUp(int index, String imagePath, boolean collision){

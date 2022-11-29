@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable
     public final int tileSize = originalTileSize * scale;
     public final int screenWidth = 768;
     public final int screenHeight = 576;
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
 
     //SYSTEMS
     int FPS = 60;
@@ -38,6 +40,7 @@ public class GamePanel extends JPanel implements Runnable
     public Player player = new Player(this, keyH);
     public Entity monster[] = new Entity[20];
     public Entity obj[] = new Entity[100];
+    public Entity item[] = new Entity[100];
     public Entity npc[] = new Entity[10];
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -47,6 +50,7 @@ public class GamePanel extends JPanel implements Runnable
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int characterState = 4;
 
     public GamePanel() {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -61,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
+        aSetter.setItem();
         gameState = titleState;
     }
     
@@ -112,7 +117,12 @@ public class GamePanel extends JPanel implements Runnable
             }
             for (int i = 0; i < monster.length; i++) {
                 if(monster[i]!=null) {
-                    monster[i].update();
+                    if(monster[i].alive && !monster[i].dying){
+                        monster[i].update();
+                    }
+                    if(!monster[i].alive){
+                        monster[i] = null;
+                    }
                 }
             }
         }
@@ -137,6 +147,7 @@ public class GamePanel extends JPanel implements Runnable
 
             //ADD Entity
             entityList.add(player);
+
             for (int i = 0; i < npc.length; i++) {
                 if(npc[i]!=null){
                     entityList.add(npc[i]);
@@ -150,6 +161,11 @@ public class GamePanel extends JPanel implements Runnable
             for (int i = 0; i < monster.length; i++) {
                 if(monster[i]!=null){
                     entityList.add(monster[i]);
+                }
+            }
+            for (int i = 0; i < item.length; i++) {
+                if(item[i]!=null){
+                    entityList.add(item[i]);
                 }
             }
             //Sort

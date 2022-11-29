@@ -9,5 +9,6 @@ public class OBJ_KEY extends Entity{
         super(gp);
         name = "Key";
         down1 = setup("/res/objects/Key.png");
+        description = "["+name+"]\nA Ancient key\n you can found everywhere.";
     }
 }
