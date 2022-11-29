@@ -9,21 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Optimize Game scale Image&#10;- Add setting Funtion">
+    <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Add Event function&#10;- Add combat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/NPC_Dad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPC_Dad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/monster/Zombie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/bodown1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/bodown2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/boleft1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/boleft2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/boright1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/player/boright2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/cave01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/maps/cave02.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/maps/cave02.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tile/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tile/TileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -226,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669568613226</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="- add invincible state">
+      <created>1669658390738</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669658390738</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +266,7 @@
     <MESSAGE value="-Add dad NPC and make npc collision" />
     <MESSAGE value="- Add Mob and AI&#10;- Custom font" />
     <MESSAGE value="- Optimize Game scale Image&#10;- Add setting Funtion" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Optimize Game scale Image&#10;- Add setting Funtion" />
+    <MESSAGE value="- add invincible state" />
+    <option name="LAST_COMMIT_MESSAGE" value="- add invincible state" />
   </component>
 </project>

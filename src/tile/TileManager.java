@@ -67,6 +67,8 @@ public class TileManager
             setUp(34, "/res/tiles/cave02/wall2.png", true);
             setUp(35, "/res/tiles/cave02/wall3.png", true);
             setUp(36, "/res/tiles/cave02/wall4.png", true);
+            setUp(37, "/res/tiles/cave02/warp.png", false);
+
     }
     public void setUp(int index, String imagePath, boolean collision){
         UtilityTool uTool = new UtilityTool();
@@ -88,11 +90,11 @@ public class TileManager
             int col = 0;
             int row = 0;
 
-            this.gp.getClass(); this.gp.getClass(); while (col < 50 && row < 50) {
+            while (col < 50 && row < 50) {
 
                 String line = br.readLine();
 
-                this.gp.getClass(); while (col < 50) {
+                 while (col < 50) {
 
                     String[] numbers = line.split(" ");
 
@@ -101,7 +103,7 @@ public class TileManager
                     this.mapTileNum[col][row] = num;
                     col++;
                 }
-                this.gp.getClass(); if (col == 50) {
+                if (col == 50) {
                     col = 0;
                     row++;
                 }
