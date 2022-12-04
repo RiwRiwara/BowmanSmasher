@@ -6,7 +6,9 @@ import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
+import monster.Slime;
 import object.OBJ_Bowman;
+import object.OBJ_Fireball;
 
 
 public class Player extends Entity {
@@ -15,7 +17,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
-    public boolean attackCanceled = false;
+    public boolean attackCanceled = false, pick = false;
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int MaxInventorySize = 20;
     
@@ -38,7 +40,6 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
-        getPlayerAttackImage();
         setItems();
     }
     public void setDefaultValues() {
@@ -51,10 +52,14 @@ public class Player extends Entity {
         this.direction = "down";
 
         //Player Status
+        invincibleTime = 40;
         maxLife = 6;
         life = maxLife;
         currentWeapon = new OBJ_Bowman(gp);
-        attack = getAttack(currentWeapon);
+        projectile = new OBJ_Fireball(gp);
+        attack = getAttack();
+        stamina = 5;
+
 
 
         //Sound
@@ -65,9 +70,9 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
 
     }
-    public int getAttack(Entity weapon){
+    public int getAttack(){
         attackArea = currentWeapon.attackArea;
-        return  weapon.attackValue;
+        return  currentWeapon.attackValue;
     }
 
     public void getPlayerImage() {
@@ -79,8 +84,6 @@ public class Player extends Entity {
         right2 = setup("/res/player/boman_right2.png");
         up1 = setup("/res/player/boman_up1.png");
         up2 = setup("/res/player/boman_up2.png");
-    }
-    public void getPlayerAttackImage(){
         attackUp1 = setup("/res/player/boman_attack_up1.png", gp.tileSize, gp.tileSize*2);
         attackUp2 = setup("/res/player/boman_attack_up2.png", gp.tileSize, gp.tileSize*2);
         attackDown1 = setup("/res/player/boman_attack_down1.png", gp.tileSize, gp.tileSize*2);
@@ -90,85 +93,96 @@ public class Player extends Entity {
         attackRight1 = setup("/res/player/boman_attack_right1.png", gp.tileSize*2, gp.tileSize);
         attackRight2 = setup("/res/player/boman_attack_right2.png", gp.tileSize*2, gp.tileSize);
     }
+    public void setEquipSpear() {
+        down1 = setup("/res/player/spear/boman_down1.png");
+        down2 = setup("/res/player/spear/boman_down2.png");
+        left1 = setup("/res/player/spear/boman_left1.png");
+        left2 = setup("/res/player/spear/boman_left2.png");
+        right1 = setup("/res/player/spear/boman_right1.png");
+        right2 = setup("/res/player/spear/boman_right2.png");
+        up1 = setup("/res/player/spear/boman_up1.png");
+        up2 = setup("/res/player/spear/boman_up2.png");
+    }
 
     public void update() {
-
         if (attacking){
             attacking();
-        }
-        else if (keyH.upPressed || keyH.downPressed ||
+        } else if (keyH.upPressed || keyH.downPressed ||
                 keyH.leftPressed || keyH.rightPressed || keyH.enterPressed) {
-
-            if (keyH.upPressed) {
-                direction = "up";
-            }
-            else if (keyH.downPressed) {
-                direction = "down";
-            }
-            else if (keyH.leftPressed) {
-                direction = "left";
-            }
-            else if (this.keyH.rightPressed) {
-                direction = "right";
-            }
-
-            //Check TILE Collision
-            collisionOn = false;
-            gp.cChecker.checkTile(this);
-
-            //Check OBJ collision
-            int objIndex =  gp.cChecker.checkItem(this, true);
-            pickUpObj(objIndex);
-
-            //Check Item collision
-            int itemIndex =  gp.cChecker.checkObject(this, true);
-            interactObj(itemIndex);
-
-            //Check Npc collision
-            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-            interactNPC(npcIndex);
-
-            //Check Monster collision
-            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            contactMonster(monsterIndex);
-
-            //Check Event
-            gp.eHandler.checkEvent();
-
-            //IF collision == False, Player can move
-            if (!collisionOn && !keyH.enterPressed) {
-                switch (direction) {
-                    case "up" -> worldY -= speed;
-                    case "down" -> worldY += speed;
-                    case "left" -> worldX -= speed;
-                    case "right" -> worldX += speed;
+                if (keyH.upPressed) {
+                    direction = "up";
                 }
-            }
-
-            if(keyH.enterPressed && !attackCanceled) {
-                soundFX(attackSound);
-                attacking = true;
-                spriteCounter = 0;
-            }
-            attackCanceled = false;
-            gp.keyH.enterPressed = false;
-
-            spriteCounter++;
-            if (spriteCounter > 12) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
+                else if (keyH.downPressed) {
+                    direction = "down";
                 }
-                else if (spriteNum == 2) {
+                else if (keyH.leftPressed) {
+                    direction = "left";
+                }
+                else if (this.keyH.rightPressed) {
+                    direction = "right";
+                }
+
+                //Check TILE Collision
+                collisionOn = false;
+                gp.cChecker.checkTile(this);
+
+                //Check OBJ collision
+                int objIndex =  gp.cChecker.checkItem(this, true);
+                pickUpObj(objIndex);
+
+                //Check Item collision
+                int itemIndex =  gp.cChecker.checkObject(this, true);
+                interactObj(itemIndex);
+
+
+                //Check Npc collision
+                int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+                interactNPC(npcIndex);
+
+                //Check Monster collision
+                int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+                contactMonster(monsterIndex);
+
+                //Check Event
+                gp.eHandler.checkEvent();
+
+                //IF collision == False, Player can move
+                if (!collisionOn && !keyH.enterPressed) {
+                    switch (direction) {
+                        case "up" -> worldY -= speed;
+                        case "down" -> worldY += speed;
+                        case "left" -> worldX -= speed;
+                        case "right" -> worldX += speed;
+                    }
+                }
+                spriteCounter++;
+                if (spriteCounter > 12) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    }
+                    else if (spriteNum == 2) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+            }else{
+                standCounter++;
+                if(standCounter == 20){
                     spriteNum = 1;
+                    standCounter = 0;
                 }
-                spriteCounter = 0;
             }
-        }else{
-            standCounter++;
-            if(standCounter == 20){
-                spriteNum = 1;
-                standCounter = 0;
-            }
+        if(gp.keyH.shotKeyPressed && !projectile.alive && shotAvailableCounter == 40){
+            //SET DEFAULT
+            projectile.set(worldX, worldY, direction, true, this);
+            //ADD TO LIST
+            gp.projecttileList.add(projectile);
+            shotAvailableCounter = 0;
+            gp.playSE(3);
+        }
+
+        if(shotAvailableCounter < 40){
+            shotAvailableCounter++;
         }
 
         //need to be outside of key statement
@@ -180,8 +194,17 @@ public class Player extends Entity {
             }
         }
 
+        if(keyH.enterPressed && !attackCanceled) {
+            soundFX(attackSound);
+            attacking = true;
+            spriteCounter = 0;
+        }
+        attackCanceled = false;
+        gp.keyH.enterPressed = false;
+
 
     }
+
     public void attacking(){
         spriteCounter++;
         if(spriteCounter <=5){
@@ -208,7 +231,7 @@ public class Player extends Entity {
 
             //Check monster Collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex);
+            damageMonster(monsterIndex, attack);
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
@@ -224,23 +247,30 @@ public class Player extends Entity {
 
     public void pickUpObj(int i){
         if(i != 999){
+            itemHover = i;
             String text;
-            if (inventory.size() != MaxInventorySize) {
-                if ("Key".equals(gp.item[i].name)) {
-                    gp.playSE(1);
-                    hasKey++;
-                }else{
-                    gp.playSE(4);
+                if (inventory.size() != MaxInventorySize) {
+                    switch (gp.item[i].name){
+                        case "Key":
+                            gp.playSE(1);
+                            hasKey++;
+                            break;
+                        default:
+                            gp.playSE(4);
+                            break;
+                    }
+
+                    inventory.add(gp.item[i]);
+                    text = ("Got a " + gp.item[i].name + "!");
+                    gp.item[i] = null;
+                } else {
+                    text = "Inventory Full!";
                 }
-                inventory.add(gp.item[i]);
-                text = ("Got a " + gp.item[i].name + "!");
-                gp.item[i] = null;
-            } else {
-                text = "Inventory Full!";
-            }
-            gp.ui.showMessage(text);
+                gp.ui.showMessage(text);
+
         }
     }
+
     public void interactObj(int i){
         if(i != 999) {
             switch (gp.obj[i].name) {
@@ -254,6 +284,9 @@ public class Player extends Entity {
                 case "Warp":
                     gp.obj[i].teleport(gp);
                     break;
+                case "Box":
+                    System.out.println("This is Boxx");
+                    break;
             }
         }
     }
@@ -262,13 +295,13 @@ public class Player extends Entity {
             if(i != 999){
                 attackCanceled = true;
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc.get(i) .speak();
 
                 switch (direction) {
-                    case "down" -> gp.npc[i].direction = "up";
-                    case "up" -> gp.npc[i].direction = "down";
-                    case "right" -> gp.npc[i].direction = "left";
-                    case "left" -> gp.npc[i].direction = "right";
+                    case "down" -> gp.npc.get(i) .direction = "up";
+                    case "up" -> gp.npc.get(i) .direction = "down";
+                    case "right" -> gp.npc.get(i) .direction = "left";
+                    case "left" -> gp.npc.get(i) .direction = "right";
                 }
             }else {
                 soundFX(attackSound);
@@ -277,29 +310,55 @@ public class Player extends Entity {
         }
         gp.keyH.enterPressed = false;
     }
-    public void damageMonster(int i){
+    public void damageMonster(int i, int attack){
         if(i!=999){
-            if(!gp.monster[i].invincible){
-                gp.monster[i].damageReaction();
-                gp.monster[i].life -= attack;
-                gp.monster[i].invincible = true;
+            if(!gp.monster.get(i).invincible){
+                gp.monster.get(i).damageReaction();
+                gp.monster.get(i).life -= attack;
+                gp.monster.get(i).invincible = true;
 
-                if(gp.monster[i].life <= 0){
-                    soundFX(gp.monster[i].deadSound);
-                    gp.monster[i].dying = true;
+                if(gp.monster.get(i).life <= 0){
+                    soundFX(gp.monster.get(i).deadSound);
+                    gp.monster.get(i).dying = true;
                 }else{
-                    soundFX(gp.monster[i].getDamageSound);
+                    soundFX(gp.monster.get(i).getDamageSound);
                 }
             }
         }
     }
     public void contactMonster(int i){
         if(i!=999){
-            if(!invincible) {
-                if(!gp.monster[i].dying){
+            if(!invincible && !gp.monster.get(i).dying) {
+                if(!gp.monster.get(i).dying){
                     soundFX(getDamageSound);
-                    life -= gp.monster[i].attack;
+                    life -= gp.monster.get(i).attack;
                     invincible = true;
+                }
+            }
+
+        }
+    }
+    public void selectItem(){
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if (itemIndex < inventory.size()) {
+            Entity selectedItem = inventory.get(itemIndex);
+            if(selectedItem.type == type_bow) {
+                getPlayerImage();
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if(selectedItem.type == type_spear) {
+                setEquipSpear();
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if(selectedItem.type == type_consumable) {
+                switch (selectedItem.name) {
+                    case "Red Potion" -> {
+                        inventory.get(itemIndex).use(this);
+                        inventory.remove(itemIndex);
+                    }
+                    case "Key" -> inventory.remove(itemIndex);
                 }
             }
 

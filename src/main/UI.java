@@ -60,7 +60,7 @@ public class UI {
             g2.drawString(String.format("(%d, %d)",gp.player.worldX/48, gp.player.worldY/48+1), gp.tileSize, gp.tileSize*2);
 
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 12));
-            g2.drawString(String.format("KEY: %d",gp.player.hasKey), 650, 30);
+            g2.drawString(String.format("KEY: %d",gp.player.hasKey), gp.screenWidth-gp.tileSize*2,  gp.tileSize);
             drawPlayerLife();
         }
         //Pause STATE
@@ -90,7 +90,7 @@ public class UI {
 
     public void drawCharacterScreen() {
         //Create A FRAME
-        final int frameX = gp.tileSize*2;
+        final int frameX = gp.tileSize*2 - 20;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize*5;
         final int frameHeight = gp.tileSize*10;
@@ -246,7 +246,7 @@ public class UI {
             //MAIN TITlE
             g2.setFont(g2.getFont().deriveFont(Font.BOLD, 45));
             String text = "BOWMAN SMASHER";
-            int x = gp.tileSize*2;
+            int x = gp.tileSize*4;
             int y = gp.tileSize*3;
             //SHADOW
             g2.setColor(Color.BLUE);
@@ -258,8 +258,8 @@ public class UI {
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24));
             text = "Play";
-            x = 320;
-            y = 400;
+            x = gp.tileSize*8;
+            y = gp.tileSize*10;
             g2.drawString(text, x, y);
             if (numCommand == 0) {
                 g2.drawString(">", x - 20, y);
@@ -267,24 +267,24 @@ public class UI {
 
 
             text = "Setting";
-            x = 320;
-            y = 450;
+            x = gp.tileSize*8;
+            y = gp.tileSize*11;
             g2.drawString(text, x, y);
             if (numCommand == 1) {
                 g2.drawString(">", x - 20, y);
             }
 
             text = "Exit";
-            x = 320;
-            y = 500;
+            x = gp.tileSize*8;
+            y = gp.tileSize*12;
             g2.drawString(text, x, y);
             if (numCommand == 2) {
                 g2.drawString(">", x - 20, y);
             }
 
             //Image center
-            x = 320;
-            y = 200;
+            x = gp.tileSize*8;
+            y = gp.tileSize*5;
 
             //Image animate
             ChangeImgCount++;
@@ -296,10 +296,10 @@ public class UI {
                 ChangeImgCount = 0;
             }
             switch (ImageCount) {
-                case 1 -> g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
-                case 2 -> g2.drawImage(gp.player.right1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
-                case 3 -> g2.drawImage(gp.player.up1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
-                case 4 -> g2.drawImage(gp.player.left1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+                case 1 -> g2.drawImage(gp.player.down1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
+                case 2 -> g2.drawImage(gp.player.right1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
+                case 3 -> g2.drawImage(gp.player.up1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
+                case 4 -> g2.drawImage(gp.player.left1, x, y, gp.tileSize * 3, gp.tileSize * 3, null);
             }
         } else if (titleScreenState == 1) {
 

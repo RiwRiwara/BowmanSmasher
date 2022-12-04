@@ -58,7 +58,7 @@ public class NPC_Dad extends Entity{
         gp.ui.currentDialogue = dialogues[dialogueIndex];
     }
     public void checkCanPass(){
-        if(gp.npc[0].worldX == gp.tileSize * 10 && gp.npc[0].worldY == gp.tileSize * 40){
+        if(gp.npc.get(0).worldX == gp.tileSize * 10 && gp.npc.get(0).worldY == gp.tileSize * 40){
             direction = "left";
         }
     }

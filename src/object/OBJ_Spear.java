@@ -7,12 +7,12 @@ public class OBJ_Spear extends Entity{
     GamePanel gp;
     public OBJ_Spear(GamePanel gp){
         super(gp);
+        type = type_spear;
         name = "Spear";
         down1 = setup("/res/objects/spear.png");
         attackValue = 999;
         attackArea.width = 36;
         attackArea.height = 36;
-        description = "["+name+"]\nLegendary spear.";
         description = String.format("[%s]\nLegendary spear.\nDamage : %d", name, attackValue);
 
     }

@@ -3,6 +3,8 @@ package main;
 
 import entity.Entity;
 
+import java.util.ArrayList;
+
 public class CollisionChecker
 {
     GamePanel gp;
@@ -123,15 +125,15 @@ public class CollisionChecker
         return index;
     }
     //NPC OR MOB
-    public int checkEntity(Entity entity, Entity[] target){
+    public int checkEntity(Entity entity, ArrayList<Entity> target){
 
         int index = 999;
-        for (int i = 0; i < target.length; i++) {
-            if(target[i] != null){
+        for (int i = 0; i < target.size(); i++) {
+            if(target.get(i) != null){
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;
-                target[i].solidArea.x = target[i].worldX + target[i].solidArea.x;
-                target[i].solidArea.y = target[i].worldY + target[i].solidArea.y;
+                target.get(i) .solidArea.x = target.get(i) .worldX + target.get(i) .solidArea.x;
+                target.get(i) .solidArea.y = target.get(i) .worldY + target.get(i) .solidArea.y;
 
                 switch (entity.direction) {
                     case "up" -> entity.solidArea.y -= entity.speed;
@@ -139,16 +141,16 @@ public class CollisionChecker
                     case "left" -> entity.solidArea.x -= entity.speed;
                     case "right" -> entity.solidArea.x += entity.speed;
                 }
-                if(entity.solidArea.intersects(target[i].solidArea)){
-                    if(target[i] != entity) {
+                if(entity.solidArea.intersects(target.get(i) .solidArea)){
+                    if(target.get(i)  != entity) {
                         entity.collisionOn = true;
                         index = i;
                     }
                 }
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
-                target[i].solidArea.x = target[i].solidAreaDefaultX;
-                target[i].solidArea.y = target[i].solidAreaDefaultY;
+                target.get(i).solidArea.x = target.get(i).solidAreaDefaultX;
+                target.get(i).solidArea.y = target.get(i).solidAreaDefaultY;
             }
         }
         return index;

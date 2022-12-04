@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, ePressed, shotKeyPressed;
     GamePanel gp;
 
 
@@ -97,17 +97,20 @@ public class KeyHandler implements KeyListener {
         }
     }
     public void playState(int code){
+        if(code == KeyEvent.VK_E){
+            ePressed = true;
+        }
         if (code == KeyEvent.VK_W) {
-            this.upPressed = true;
+            upPressed = true;
         }
         if (code == KeyEvent.VK_S) {
-            this.downPressed = true;
+            downPressed = true;
         }
         if (code == KeyEvent.VK_A) {
-            this.leftPressed = true;
+            leftPressed = true;
         }
         if (code == KeyEvent.VK_D) {
-            this.rightPressed = true;
+            rightPressed = true;
         }
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = true;
@@ -115,6 +118,11 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_P){
             gp.gameState = gp.pauseState;
         }
+        if(code == KeyEvent.VK_Q){
+            shotKeyPressed = true;
+        }
+
+
         //Increase Speed
         if(code == KeyEvent.VK_UP){
             gp.player.speed++;
@@ -126,6 +134,7 @@ public class KeyHandler implements KeyListener {
         if(code == KeyEvent.VK_C){
             gp.gameState = gp.characterState;
         }
+
 
         //Return to Title
         if(code == KeyEvent.VK_ESCAPE){
@@ -173,6 +182,9 @@ public class KeyHandler implements KeyListener {
                 gp.ui.slotCol++;
             }
         }
+        if(code == KeyEvent.VK_ENTER) {
+            gp.player.selectItem();
+        }
     }
 
 
@@ -180,15 +192,22 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
-            this.upPressed = false;
+            upPressed = false;
         }
         if (code == KeyEvent.VK_S) {
-            this.downPressed = false;
+            downPressed = false;
         }
         if (code == KeyEvent.VK_A) {
-            this.leftPressed = false;
+            leftPressed = false;
         }
-        if (code == KeyEvent.VK_D)
-            this.rightPressed = false;
+        if (code == KeyEvent.VK_D) {
+            rightPressed = false;
+        }
+        if (code == KeyEvent.VK_Q) {
+            shotKeyPressed = false;
+        }
+        if (code == KeyEvent.VK_E) {
+            ePressed = false;
+        }
     }
 }

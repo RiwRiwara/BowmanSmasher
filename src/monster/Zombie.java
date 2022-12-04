@@ -8,11 +8,12 @@ import java.util.Random;
 public class Zombie extends Entity {
     int tempSpeed;
     int changeDirect = 100;
-    public Zombie(GamePanel gp){
-        super(gp);
+    public Zombie(GamePanel gp, int x, int y){
+        super(gp, x, y);
 
         //STATUs
-        type = 2;
+        type = type_monster;
+        invincibleTime = 60;
         name = "Zombie";
         speed = 1;
         tempSpeed = speed;

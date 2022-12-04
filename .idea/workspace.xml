@@ -9,33 +9,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- Add heath bar&#10;- Add sound effects&#10;- Add Character State">
-      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Spear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-down1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-down2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-left1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-left2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-right1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-right2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-up1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/Mob/zombie/state2/ZOMBIE-up2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/selectinv.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/sound/teleport.wav" afterDir="false" />
+    <list default="true" id="78c1e5cf-4415-4e5b-b384-0f80787f6d93" name="Changes" comment="- add projectile&#10;- Skeleton&#10;- slime">
+      <change afterPath="$PROJECT_DIR$/src/entity/Projectile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monster/Skeleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/monster/Slime.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_Fireball.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/object/OBJ_redPotion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_attack_up2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/skeleton/skeleton_up2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_idle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/Mob/slime/slime_up2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/player/spear/boman_up2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sound/skelDamage.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/sound/skelDead.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/NPC_Dad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/NPC_Dad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/EventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/EventHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/monster/Zombie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/monster/Zombie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_Bowman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Bowman.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/object/OBJ_KEY.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_KEY.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/object/OBJ_WARP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_WARP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/objects/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/sound/menuselect.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/sound/menuselect.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/object/OBJ_Spear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/object/OBJ_Spear.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +86,19 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="cbaf83ae-5129-4b01-affe-f37554a75af9" />
+        <option name="url" value="https://github.com/RiwRiwara/BowmanSmasher.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -97,6 +139,7 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="object" />
+      <recent name="monster" />
       <recent name="entity" />
     </key>
   </component>
@@ -262,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669750664014</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="- Add heath bar&#10;- Add sound effects&#10;- Add Character State">
+      <created>1669832380037</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1669832380037</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,6 +353,7 @@
     <MESSAGE value="- Optimize Game scale Image&#10;- Add setting Funtion" />
     <MESSAGE value="- add invincible state" />
     <MESSAGE value="- Add Event function&#10;- Add combat animate" />
+    <MESSAGE value="- Add UI and inventory&#10;- Zombie state&#10;- Add inventory select&#10;- More Weapon" />
     <MESSAGE value="- Add heath bar&#10;- Add sound effects&#10;- Add Character State" />
     <option name="LAST_COMMIT_MESSAGE" value="- Add heath bar&#10;- Add sound effects&#10;- Add Character State" />
   </component>

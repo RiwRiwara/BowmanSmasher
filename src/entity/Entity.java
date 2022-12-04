@@ -13,8 +13,6 @@ import java.util.Objects;
 
 public class Entity {
     public GamePanel gp;
-    public int type; //0 = player, 1 = npc, 2 = monster
-
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
@@ -22,7 +20,7 @@ public class Entity {
     public BufferedImage image, image2, image3;
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public String[] dialogues = new String[20];
-
+    public int itemHover = 999;
 
     //STATE
     public int worldX, worldY;
@@ -42,6 +40,7 @@ public class Entity {
     public int spriteCounter = 0;
     public int dyingCounter = 0;
     public int hpBarCounter = 0;
+    public int shotAvailableCounter = 0;
 
 
     //Character Status
@@ -49,15 +48,31 @@ public class Entity {
     public int life;
     public int speed;
     public int attack;
+    public int stamina;
     public String name;
+    public int invincibleTime;
+
     //
     public Entity currentWeapon;
     public Entity getCurrentShield;
+    public Projectile projectile;
 
-    //item art
+    //item artibute
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public int useStamina;
+
+    //TYPE
+    public int type;
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_monster = 2;
+    public final int type_bow = 3;
+    public final int type_spear = 4;
+    public final int type_shield = 5;
+    public final int type_consumable = 6;
+
 
 
     //Sound
@@ -69,10 +84,16 @@ public class Entity {
     public Entity(GamePanel gp){
         this.gp = gp;
     }
+    public Entity(GamePanel gp, int x, int y){
+        this.gp = gp;
+        this.worldX = x * gp.tileSize;
+        this.worldY = y * gp.tileSize;
+    }
 
     public void setAction(){}
     public void damageReaction(){}
     public void speak(){}
+    public void use(Entity player){}
     //Teleport entity
     public void teleport(GamePanel gp){}
 
@@ -85,15 +106,8 @@ public class Entity {
         gp.cChecker.checkEntity(this, gp.npc);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
         if(this.type == 2 && contactPlayer){
-            if(!gp.player.invincible) {
-                if(!dying){
-                    soundFX(gp.player.getDamageSound);
-                    gp.player.life -= attack;
-                }
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
-
 
         if (!collisionOn) {
             switch (direction) {
@@ -116,10 +130,22 @@ public class Entity {
 
         if(invincible){
             invincibleCounter++;
-            if(invincibleCounter > 40){
+            if(invincibleCounter > invincibleTime){
                 invincible = false;
                 invincibleCounter = 0;
             }
+        }
+        if(shotAvailableCounter < 40) {
+            shotAvailableCounter++;
+        }
+    }
+    public void damagePlayer(int attack) {
+        if(!gp.player.invincible) {
+            if(!dying){
+                soundFX(gp.player.getDamageSound);
+                gp.player.life -= attack;
+            }
+            gp.player.invincible = true;
         }
     }
     public  void draw(Graphics2D g2){
@@ -161,8 +187,10 @@ public class Entity {
                     }
                 }
             }
+            //HoverItem
+
             //Monster health Bar
-            if(type==2 && hpBarOn) {
+            if(type==type_monster && hpBarOn) {
                 double oneScale = (double)gp.tileSize/maxLife;
                 double hpBarValue = oneScale*life;
                 g2.setColor(new Color(35,35,35));
@@ -185,16 +213,13 @@ public class Entity {
             if(dying){
                 dyingAnimate(g2);
             }
-
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-
             changeAlpha(g2, 1F);
         }
     }
 
 
     public void dyingAnimate(Graphics2D g2){
-
         dyingCounter++;
         int i = 5;
         if(dyingCounter <= i ) { changeAlpha(g2, 0f);}
@@ -206,12 +231,9 @@ public class Entity {
         if(dyingCounter > i*6 && dyingCounter<= i*7) {changeAlpha(g2, 0f);}
         if(dyingCounter > i*7 && dyingCounter<= i*8) {changeAlpha(g2, 1f);}
         if(dyingCounter > i*8) {
-            dying = false;
             alive = false;
         }
     }
-
-
     public void changeAlpha(Graphics2D g2, float alphaValue) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }

@@ -28,7 +28,7 @@ public class EventHandler {
     }
 
     public void  checkEvent() {
-
+        //Check Event by hit
     }
 
 

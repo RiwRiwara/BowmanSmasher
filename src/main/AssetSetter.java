@@ -1,6 +1,9 @@
 package main;
 
+import entity.Entity;
 import entity.NPC_Dad;
+import monster.Skeleton;
+import monster.Slime;
 import monster.Zombie;
 import object.*;
 
@@ -20,6 +23,11 @@ public class AssetSetter {
         gp.obj[i] = new OBJ_DOOR(gp);
         gp.obj[i].worldX = 28  * gp.tileSize;
         gp.obj[i].worldY = 47 * gp.tileSize;
+        i++;
+
+        gp.obj[i] = new OBJ_BOX(gp);
+        gp.obj[i].worldX = 3 * gp.tileSize;
+        gp.obj[i].worldY = 37 * gp.tileSize;
 
     }
     public void setItem(){
@@ -31,44 +39,29 @@ public class AssetSetter {
         gp.item[i] = new OBJ_Spear(gp);
         gp.item[i].worldX = 18 * gp.tileSize;
         gp.item[i].worldY = 43 * gp.tileSize;
+        i++;
+        gp.item[i] = new OBJ_redPotion(gp);
+        gp.item[i].worldX = 39 * gp.tileSize;
+        gp.item[i].worldY = 43 * gp.tileSize;
+
+
     }
     public void setNPC(){
-        int i  = 0;
-        gp.npc[i] = new NPC_Dad(gp);
-        gp.npc[i].worldX = gp.tileSize * 5;
-        gp.npc[i].worldY = gp.tileSize * 40;
-        i++;
+        Entity dad = new NPC_Dad(gp);
+        dad.worldX =  gp.tileSize * 5;
+        dad.worldY = gp.tileSize * 40;
+        gp.npc.add(dad);
+
     }
     public void setMonster() {
-        int i  = 0;
-        gp.monster[i] = new Zombie(gp);
-        gp.monster[i].worldX = gp.tileSize * 43;
-        gp.monster[i].worldY = gp.tileSize * 44;
-        i++;
+        for (int i = 0; i < 6; i++) {
+            gp.monster.add(new Zombie(gp, 36+i, 42));
+        }
+        for (int i = 0; i < 10; i++) {
+            gp.monster.add(new Skeleton(gp, 33+i, 32+i%4));
+        }
 
-        gp.monster[i] = new Zombie(gp);
-        gp.monster[i].worldX = gp.tileSize * 39;
-        gp.monster[i].worldY = gp.tileSize * 42;
-        i++;
-
-        gp.monster[i] = new Zombie(gp);
-        gp.monster[i].worldX = gp.tileSize * 40;
-        gp.monster[i].worldY = gp.tileSize * 42;
-        i++;
-
-        gp.monster[i] = new Zombie(gp);
-        gp.monster[i].worldX = gp.tileSize * 42;
-        gp.monster[i].worldY = gp.tileSize * 42;
-        i++;
-
-        gp.monster[i] = new Zombie(gp);
-        gp.monster[i].worldX = gp.tileSize * 43;
-        gp.monster[i].worldY = gp.tileSize * 43;
-        i++;
-
-
-
-
+        gp.monster.add(new Slime(gp, 4, 40));
 
     }
 }

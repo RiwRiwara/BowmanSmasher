@@ -8,6 +8,7 @@ public class OBJ_Bowman extends Entity{
     public OBJ_Bowman(GamePanel gp){
         super(gp);
         name = "Bow";
+        type = type_bow;
         down1 = setup("/res/objects/bow.png");
         attackValue = 1;
         attackArea.width = 30;
