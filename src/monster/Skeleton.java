@@ -13,7 +13,7 @@ public class Skeleton extends Entity {
 
         //STATUs
         type = type_monster;
-        invincibleTime = 10;
+        invincibleTime = 100;
         name = "Skeleton";
         speed = 2;
         tempSpeed = speed;

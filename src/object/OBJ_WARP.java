@@ -12,6 +12,12 @@ public class OBJ_WARP extends Entity{
         this.y = y;
         name = "Warp";
         down1 = setup("/res/objects/warp.png");
+        solidArea.x = 10;
+        solidArea.y = 10;
+        solidArea.height = 28;
+        solidArea.width = 28;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
     }
     public void teleport(GamePanel gp){
         gp.playSE(5);

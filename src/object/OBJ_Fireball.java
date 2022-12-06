@@ -2,6 +2,8 @@ package object;
 import entity.Projectile;
 import main.GamePanel;
 
+import java.awt.*;
+
 public class OBJ_Fireball extends Projectile {
     GamePanel gp;
     public OBJ_Fireball(GamePanel gp){
@@ -15,6 +17,14 @@ public class OBJ_Fireball extends Projectile {
         useStamina = 1;
         alive = false;
         getImage();
+
+        solidArea = new Rectangle();
+        solidArea.x = 10;
+        solidArea.y = 10;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 30;
     }
     public void getImage(){
         down1 = setup("/res/objects/fireball/fire_down1.png");

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import main.GamePanel;
 import main.KeyHandler;
-import monster.Slime;
 import object.OBJ_Bowman;
 import object.OBJ_Fireball;
 
@@ -17,9 +16,10 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
-    public boolean attackCanceled = false, pick = false;
+    public boolean attackCanceled = false;
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int MaxInventorySize = 20;
+    int attackDelay = 0;
     
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -67,9 +67,19 @@ public class Player extends Entity {
         attackSound = getClass().getResource("/res/sound/smashBow.wav");
     }
     public void setItems() {
+        inventory.clear();
         inventory.add(currentWeapon);
-
     }
+    public void setDefaultPosition(){
+        worldX = gp.tileSize * 5;
+        worldY = gp.tileSize * 35;
+        direction = "down";
+    }
+    public void restoreLife(){
+        life = maxLife;
+        invincible = false;
+    }
+
     public int getAttack(){
         attackArea = currentWeapon.attackArea;
         return  currentWeapon.attackValue;
@@ -194,13 +204,30 @@ public class Player extends Entity {
             }
         }
 
-        if(keyH.enterPressed && !attackCanceled) {
-            soundFX(attackSound);
+        //Attack Phase
+        if(keyH.enterPressed && !attackCanceled && attackDelay == 100) {
+            gp.playSE(attackSound);
             attacking = true;
             spriteCounter = 0;
         }
-        attackCanceled = false;
+        if(attackDelay == 100) {
+            attackCanceled = false;
+            attackDelay = 0;
+        }
+        if(attackDelay < 100){
+            attackDelay++;
+        }
         gp.keyH.enterPressed = false;
+
+
+        if(life > maxLife) {
+            life = maxLife;
+        }
+        if(life <= 0) {
+            gp.ui.numCommand = 0;
+            gp.stopMusic();
+            gp.gameState = gp.gameOverState;
+        }
 
 
     }
@@ -243,14 +270,14 @@ public class Player extends Entity {
             spriteCounter=0;
             attacking = false;
         }
+
     }
 
     public void pickUpObj(int i){
         if(i != 999){
-            itemHover = i;
             String text;
                 if (inventory.size() != MaxInventorySize) {
-                    switch (gp.item[i].name){
+                    switch (gp.item[gp.currentMap][i].name){
                         case "Key":
                             gp.playSE(1);
                             hasKey++;
@@ -260,8 +287,8 @@ public class Player extends Entity {
                             break;
                     }
 
-                    inventory.add(gp.item[i]);
-                    text = ("Got a " + gp.item[i].name + "!");
+                    inventory.add(gp.item[gp.currentMap][i]);
+                    text = ("Got a " + gp.item[gp.currentMap][i].name + "!");
                     gp.item[i] = null;
                 } else {
                     text = "Inventory Full!";
@@ -273,7 +300,7 @@ public class Player extends Entity {
 
     public void interactObj(int i){
         if(i != 999) {
-            switch (gp.obj[i].name) {
+            switch (gp.obj[gp.currentMap][i].name) {
                 case "Door":
                     if (hasKey > 0) {
                         gp.playSE(2);
@@ -282,7 +309,7 @@ public class Player extends Entity {
                     }
                     break;
                 case "Warp":
-                    gp.obj[i].teleport(gp);
+                    gp.obj[gp.currentMap][i].teleport(gp);
                     break;
                 case "Box":
                     System.out.println("This is Boxx");
@@ -295,16 +322,16 @@ public class Player extends Entity {
             if(i != 999){
                 attackCanceled = true;
                 gp.gameState = gp.dialogueState;
-                gp.npc.get(i) .speak();
+                gp.npc[gp.currentMap][i] .speak();
 
                 switch (direction) {
-                    case "down" -> gp.npc.get(i) .direction = "up";
-                    case "up" -> gp.npc.get(i) .direction = "down";
-                    case "right" -> gp.npc.get(i) .direction = "left";
-                    case "left" -> gp.npc.get(i) .direction = "right";
+                    case "down" -> gp.npc[gp.currentMap][i] .direction = "up";
+                    case "up" -> gp.npc[gp.currentMap][i] .direction = "down";
+                    case "right" -> gp.npc[gp.currentMap][i] .direction = "left";
+                    case "left" -> gp.npc[gp.currentMap][i] .direction = "right";
                 }
             }else {
-                soundFX(attackSound);
+                gp.playSE(attackSound);
                 attacking = true;
             }
         }
@@ -312,26 +339,26 @@ public class Player extends Entity {
     }
     public void damageMonster(int i, int attack){
         if(i!=999){
-            if(!gp.monster.get(i).invincible){
-                gp.monster.get(i).damageReaction();
-                gp.monster.get(i).life -= attack;
-                gp.monster.get(i).invincible = true;
+            if(!gp.monster[gp.currentMap][i].invincible){
+                gp.monster[gp.currentMap][i].damageReaction();
+                gp.monster[gp.currentMap][i].life -= attack;
+                gp.monster[gp.currentMap][i].invincible = true;
 
-                if(gp.monster.get(i).life <= 0){
-                    soundFX(gp.monster.get(i).deadSound);
-                    gp.monster.get(i).dying = true;
+                if(gp.monster[gp.currentMap][i].life <= 0){
+                    gp.playSE(gp.monster[gp.currentMap][i].deadSound);
+                    gp.monster[gp.currentMap][i].dying = true;
                 }else{
-                    soundFX(gp.monster.get(i).getDamageSound);
+                    gp.playSE(gp.monster[gp.currentMap][i].getDamageSound);
                 }
             }
         }
     }
     public void contactMonster(int i){
         if(i!=999){
-            if(!invincible && !gp.monster.get(i).dying) {
-                if(!gp.monster.get(i).dying){
-                    soundFX(getDamageSound);
-                    life -= gp.monster.get(i).attack;
+            if(!invincible && !gp.monster[gp.currentMap][i].dying) {
+                if(!gp.monster[gp.currentMap][i].dying){
+                    gp.playSE(getDamageSound);
+                    life -= gp.monster[gp.currentMap][i].attack;
                     invincible = true;
                 }
             }

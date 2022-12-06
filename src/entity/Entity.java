@@ -142,7 +142,7 @@ public class Entity {
     public void damagePlayer(int attack) {
         if(!gp.player.invincible) {
             if(!dying){
-                soundFX(gp.player.getDamageSound);
+                gp.playSE(gp.player.getDamageSound);
                 gp.player.life -= attack;
             }
             gp.player.invincible = true;
@@ -259,16 +259,6 @@ public class Entity {
         }
         return image;
     }
-    public void soundFX(URL sound) {
-        try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(sound);
-            clip = AudioSystem.getClip();
-            clip.open(ais);
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
-        clip.start();
-    }
+
 
 }

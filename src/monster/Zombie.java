@@ -22,7 +22,7 @@ public class Zombie extends Entity {
         life = maxLife;
 
         solidArea.x = 3;
-        solidArea.y = 16;
+        solidArea.y = 15;
         solidArea.width = 42;
         solidArea.height = 40;
         solidAreaDefaultX = solidArea.x;
