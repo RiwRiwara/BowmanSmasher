@@ -60,8 +60,6 @@ public class UI {
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 12));
             g2.drawString(String.format("(%d, %d)",gp.player.worldX/48, gp.player.worldY/48+1), gp.tileSize, gp.tileSize*2);
 
-            g2.setFont(g2.getFont().deriveFont(Font.BOLD, 12));
-            g2.drawString(String.format("KEY: %d",gp.player.hasKey), gp.screenWidth-gp.tileSize*2,  gp.tileSize);
             drawPlayerLife();
         }
         //Pause STATE

@@ -1,5 +1,6 @@
 package main;
 
+import AI.PathFinder;
 import entity.Entity;
 import entity.Player;
 
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable
 
     //SYSTEMS
     int FPS = 60;
-    TileManager tileM = new TileManager(this);
+    public TileManager tileM = new TileManager(this);
     public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
@@ -44,6 +45,7 @@ public class GamePanel extends JPanel implements Runnable
     public UI ui = new UI(this);
     public  EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
+    public PathFinder pFinder = new PathFinder(this);
 
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
@@ -135,12 +137,12 @@ public class GamePanel extends JPanel implements Runnable
             //Player
             player.update();
             //NPC
-            for (int i = 0; i < npc[1].length; i++) {
+            for (int i = 0; i < npc[currentMap].length; i++) {
                 if(npc[currentMap][i] != null){
-                    npc[currentMap][i] .update();
+                    npc[currentMap][i].update();
                 }
             }
-            for (int i = 0; i < monster[1].length; i++) {
+            for (int i = 0; i < monster[currentMap].length; i++) {
                 if(monster[currentMap][i]!=null) {
                     if(monster[currentMap][i].alive && !monster[currentMap][i].dying){
                         monster[currentMap][i].update();
@@ -183,17 +185,17 @@ public class GamePanel extends JPanel implements Runnable
             //ADD Entity
             entityList.add(player);
 
-            for (int i = 0; i < npc[1].length; i++) {
+            for (int i = 0; i < npc[currentMap].length; i++) {
                 if(npc[currentMap][i] !=null){
                     entityList.add(npc[currentMap][i] );
                 }
             }
-            for (int i = 0; i < obj.length; i++) {
+            for (int i = 0; i < obj[currentMap].length; i++) {
                 if(obj[currentMap][i]!=null){
                     entityList.add(obj[currentMap][i]);
                 }
             }
-            for (int i = 0; i < monster[1].length; i++) {
+            for (int i = 0; i < monster[currentMap].length; i++) {
                 if(monster[currentMap][i] !=null){
                     entityList.add(monster[currentMap][i]);
                 }
@@ -203,7 +205,7 @@ public class GamePanel extends JPanel implements Runnable
                     entityList.add(projecttileList.get(i));
                 }
             }
-            for (int i = 0; i < item[1].length; i++) {
+            for (int i = 0; i < item[currentMap].length; i++) {
                 if(item[currentMap][i]!=null){
                     entityList.add(item[currentMap][i]);
                 }

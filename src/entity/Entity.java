@@ -20,7 +20,6 @@ public class Entity {
     public BufferedImage image, image2, image3;
     public Rectangle attackArea = new Rectangle(0,0,0,0);
     public String[] dialogues = new String[20];
-    public int itemHover = 999;
 
     //STATE
     public int worldX, worldY;
@@ -32,6 +31,7 @@ public class Entity {
     public boolean alive = true;
     public boolean dying = false;
     public boolean hpBarOn = false;
+    public boolean onPath = false;
 
     //Counter
     public int actionLockCounter = 0;
@@ -57,11 +57,13 @@ public class Entity {
     public Entity getCurrentShield;
     public Projectile projectile;
 
-    //item artibute
+    //item attribute
     public int attackValue;
     public int defenseValue;
     public String description = "";
     public int useStamina;
+    public boolean isStunt = false;
+    public int stuntCounter = 0;
 
     //TYPE
     public int type;
@@ -97,17 +99,25 @@ public class Entity {
     //Teleport entity
     public void teleport(GamePanel gp){}
 
-    public void update(){
-        setAction();
+    public void checkCollision(){
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkEntity(this, gp.monster);
         gp.cChecker.checkEntity(this, gp.npc);
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
-        if(this.type == 2 && contactPlayer){
+        if(this.type == type_monster && contactPlayer){
             damagePlayer(attack);
+            if(name == "Zombie") {
+                speed = 0;
+                isStunt = true;
+            }
         }
+    }
+
+    public void update(){
+        setAction();
+        checkCollision();
 
         if (!collisionOn) {
             switch (direction) {
@@ -248,6 +258,7 @@ public class Entity {
         }
         return image;
     }
+
     public BufferedImage setup(String imagePath){
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
@@ -260,5 +271,72 @@ public class Entity {
         return image;
     }
 
+    public void searchPath(int goalCol, int goalRow){
+        int startCol = (worldX + solidArea.x)/gp.tileSize;
+        int startRow = (worldY + solidArea.y)/gp.tileSize;
 
+        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
+
+        if(gp.pFinder.search()) {
+            //Next Wx Wy
+            int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
+            int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+
+            int enLeftX = worldX + solidArea.x;
+            int enRightX = worldX + solidArea.x + solidArea.width;
+            int enTopY = worldY + solidArea.y;
+            int enBottomY = worldY + solidArea.y + solidArea.height;
+
+            if(enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+                direction = "up";
+            }
+            else if(enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+                direction = "down";
+            }
+            else if(enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+                if(enLeftX > nextX) {
+                    direction = "left";
+                }
+                if(enLeftX < nextX) {
+                    direction = "right";
+                }
+            }
+            else if (enTopY > nextY && enLeftX > nextX) {
+                direction = "up";
+                checkCollision();
+                if(collisionOn){
+                    direction = "left";
+                }
+            }
+            else if (enTopY > nextY && enLeftX < nextX) {
+                direction = "up";
+                checkCollision();
+                if(collisionOn){
+                    direction = "right";
+                }
+            }
+            else if (enTopY < nextY && enLeftX > nextX) {
+                direction = "down";
+                checkCollision();
+                if(collisionOn){
+                    direction = "left";
+                }
+            }
+            else if (enTopY < nextY && enLeftX < nextX) {
+                direction = "down";
+                checkCollision();
+                if(collisionOn){
+                    direction = "right";
+                }
+            }
+
+            int nextCol = gp.pFinder.pathList.get(0).col;
+            int nextRow = gp.pFinder.pathList.get(0).row;
+            if(nextCol == goalCol && nextRow == goalRow) {
+                onPath = false;
+            }
+
+        }
+
+    }
 }

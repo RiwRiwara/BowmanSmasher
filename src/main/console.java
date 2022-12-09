@@ -1,6 +1,9 @@
 package main;
 
-import java.util.Objects;
+import entity.Entity;
+import object.*;
+
+import java.lang.reflect.InvocationTargetException;
 
 public class console extends javax.swing.JFrame {
     GamePanel gp;
@@ -79,12 +82,27 @@ public class console extends javax.swing.JFrame {
                     gp.player.life = gp.player.maxLife;
                     jLabel1.setText("Max life");
                     break;
+                case "give":
+                    giveItem(Integer.parseInt(command[1]));
+                    break;
+                case "map":
+                    gp.currentMap = Integer.parseInt(command[1]);
+                    break;
             }
         }catch (Exception e){
             jLabel1.setText("Command Error");
         }
 
 
+    }
+
+    public void giveItem(int itemID) {
+        Entity[] allItem = new Entity[100];
+        allItem[0] = new OBJ_KEY(gp);
+        allItem[1] = new OBJ_redPotion(gp);
+        allItem[2] = new OBJ_HEART(gp);
+        allItem[3] = new OBJ_Spear(gp);
+        gp.player.inventory.add(allItem[itemID]);
     }
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

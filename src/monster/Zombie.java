@@ -13,7 +13,7 @@ public class Zombie extends Entity {
 
         //STATUs
         type = type_monster;
-        invincibleTime = 60;
+        invincibleTime = 30;
         name = "Zombie";
         speed = 1;
         tempSpeed = speed;
@@ -45,37 +45,69 @@ public class Zombie extends Entity {
             up2 = setup("/res/Mob/zombie/ZOMBIE-up2.png");
 
     }
+    public void update() {
+        super.update();
+        if(!isStunt) {
+            speed = tempSpeed;
+        }
+        if(isStunt){
+            stuntCounter++;
+        }
+        if(stuntCounter==30){
+            stuntCounter = 0;
+            isStunt = false;
+        }
+        int xDistance = Math.abs(worldX - gp.player.worldX) ;
+        int yDistance = Math.abs(worldY - gp.player.worldY) ;
+        int tileDistance = Math.abs(xDistance - yDistance) / gp.tileSize ;
+        if(!onPath && tileDistance < 5) {
+            int i = new Random().nextInt(100)+1;
+            if(i > 50) {
+                onPath = true;
+            }
+        }
+        if(onPath && tileDistance > 20) {
+            onPath = false;
+        }
+    }
 
     public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == changeDirect) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1; // 1 -100
-            if (i <= 25) {
-                direction = "up";
+        if(onPath) {
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
+            searchPath(goalCol, goalRow);
+        }else {
+            actionLockCounter++;
+            if (actionLockCounter == changeDirect) {
+                Random random = new Random();
+                int i = random.nextInt(100) + 1; // 1 -100
+                if (i <= 25) {
+                    direction = "up";
+                }
+                if (i > 25 && i <= 50) {
+                    direction = "down";
+                }
+                if (i > 50 && i <= 75) {
+                    direction = "left";
+                }
+                if (i > 75 && i <= 100) {
+                    direction = "right";
+                }
+                speed = tempSpeed;
+                actionLockCounter = 0;
             }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            speed = tempSpeed;
-            actionLockCounter = 0;
         }
     }
     public void damageReaction(){
 
         actionLockCounter = 0;
         tempSpeed++;
-        if(tempSpeed ==3 ){
+        if(tempSpeed == 3 ){
             changeStateZombie();
         }
         changeDirect -= 40;
         speed = 0;
+        isStunt = true;
     }
     public void changeStateZombie(){
 

@@ -29,7 +29,6 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
-        solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
@@ -280,7 +279,6 @@ public class Player extends Entity {
                     switch (gp.item[gp.currentMap][i].name){
                         case "Key":
                             gp.playSE(1);
-                            hasKey++;
                             break;
                         default:
                             gp.playSE(4);
@@ -289,7 +287,7 @@ public class Player extends Entity {
 
                     inventory.add(gp.item[gp.currentMap][i]);
                     text = ("Got a " + gp.item[gp.currentMap][i].name + "!");
-                    gp.item[i] = null;
+                    gp.item[gp.currentMap][i] = null;
                 } else {
                     text = "Inventory Full!";
                 }
@@ -299,23 +297,35 @@ public class Player extends Entity {
     }
 
     public void interactObj(int i){
-        if(i != 999) {
-            switch (gp.obj[gp.currentMap][i].name) {
-                case "Door":
-                    if (hasKey > 0) {
-                        gp.playSE(2);
-                        hasKey--;
-                        gp.obj[i] = null;
-                    }
-                    break;
-                case "Warp":
-                    gp.obj[gp.currentMap][i].teleport(gp);
-                    break;
-                case "Box":
-                    System.out.println("This is Boxx");
-                    break;
+        if(keyH.enterPressed) {
+            if (i != 999) {
+                switch (gp.obj[gp.currentMap][i].name) {
+                    case "Door":
+                        boolean isUnlockComplete = false;
+                        for (int j = 0; j < inventory.size(); j++) {
+                            if(inventory.get(j).name == "Key") {
+                                gp.playSE(2);
+                                gp.obj[gp.currentMap][i] = null;
+                                inventory.remove(j);
+                                break;
+                            }
+                        }
+                        if(!isUnlockComplete) {
+                            gp.ui.showMessage("You need Key \nto unlock this door.");
+                        }else {
+                            gp.ui.showMessage("Door has unlock!");
+                        }
+                        break;
+                    case "Warp":
+                        gp.obj[gp.currentMap][i].teleport(gp);
+                        break;
+                    case "Box":
+                        System.out.println("This is Boxx");
+                        break;
+                }
             }
         }
+        keyH.ePressed = false;
     }
     public void interactNPC(int i){
         if(gp.keyH.enterPressed){
@@ -324,12 +334,6 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.npc[gp.currentMap][i] .speak();
 
-                switch (direction) {
-                    case "down" -> gp.npc[gp.currentMap][i] .direction = "up";
-                    case "up" -> gp.npc[gp.currentMap][i] .direction = "down";
-                    case "right" -> gp.npc[gp.currentMap][i] .direction = "left";
-                    case "left" -> gp.npc[gp.currentMap][i] .direction = "right";
-                }
             }else {
                 gp.playSE(attackSound);
                 attacking = true;

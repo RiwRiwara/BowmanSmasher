@@ -49,9 +49,11 @@ public class AssetSetter {
     public void setNPC(){
         int i = 0;
         Entity dad = new NPC_Dad(gp);
-        dad.worldX =  gp.tileSize * 5;
-        dad.worldY = gp.tileSize * 40;
-        gp.npc[gp.currentMap][i] = dad;
+        dad.worldX =  gp.tileSize * 10;
+        dad.worldY = gp.tileSize * 38;
+        gp.npc[1][i] = dad;
+
+
 
     }
     public void setMonster() {

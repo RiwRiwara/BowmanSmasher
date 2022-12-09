@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Slime extends Entity {
     int tempSpeed;
-    int changeDirect = 100;
+    int changeDirect = 30;
     public Slime(GamePanel gp, int x, int y){
         super(gp, x, y);
 
@@ -17,15 +17,15 @@ public class Slime extends Entity {
         type = type_monster;
         invincibleTime = 30;
         name = "Slime";
-        speed = 2;
+        speed = 1;
         tempSpeed = speed;
-        maxLife = 2;
+        maxLife = 10;
         attack = 1;
         life = maxLife;
         projectile = new OBJ_Fireball(gp);
 
-        solidArea.x = 3;
-        solidArea.y = 16;
+        solidArea.x = 0;
+        solidArea.y = 10;
         solidArea.width = 42;
         solidArea.height = 40;
         solidAreaDefaultX = solidArea.x;
@@ -50,6 +50,19 @@ public class Slime extends Entity {
     }
 
     public void setAction() {
+        if(onPath){
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
+            searchPath(goalCol, goalRow);
+            //Shoot Fire
+            int i = new Random().nextInt(200)+1;
+            if(i>190 && !projectile.alive && shotAvailableCounter == 40) {
+                projectile.set(worldX, worldY, direction, true, this);
+                gp.projecttileList.add(projectile);
+                shotAvailableCounter = 0;
+            }
+
+        }else{
         actionLockCounter++;
         if (actionLockCounter == changeDirect) {
             Random random = new Random();
@@ -68,24 +81,15 @@ public class Slime extends Entity {
             }
             speed = tempSpeed;
             actionLockCounter = 0;
+        }
 
         }
 
-        //Shoot Fire
-
-        int i = new Random().nextInt(100)+1;
-        if(!projectile.alive && shotAvailableCounter == 40) {
-            projectile.set(worldX, worldY, direction, true, this);
-            gp.projecttileList.add(projectile);
-            shotAvailableCounter = 0;
-        }
-        if(shotAvailableCounter < 40) {
-            shotAvailableCounter++;
-        }
     }
     public void damageReaction(){
         actionLockCounter = 0;
-        direction = gp.player.direction;
+        onPath = true;
+        speed = 2;
 
     }
 

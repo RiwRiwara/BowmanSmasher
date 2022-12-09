@@ -207,6 +207,7 @@ public class KeyHandler implements KeyListener {
         }
 
 
+
         //Increase Speed
         if(code == KeyEvent.VK_UP){
             gp.player.speed++;
@@ -229,8 +230,10 @@ public class KeyHandler implements KeyListener {
         }
 
         if (code == KeyEvent.VK_R) {
-            gp.currentMap = 1;
-
+                gp.currentMap = 1;
+        }
+        if (code == KeyEvent.VK_T) {
+            gp.currentMap = 0;
         }
     }
     public void pauseState(int code){
@@ -295,6 +298,7 @@ public class KeyHandler implements KeyListener {
             if(gp.ui.numCommand == 0) {
                 gp.gameState = gp.playState;
                 gp.restart();
+                gp.playMusic(0);
             }else{
                 gp.gameState = gp.titleState;
                 gp.restart();

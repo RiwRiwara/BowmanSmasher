@@ -21,10 +21,10 @@ public class Skeleton extends Entity {
         attack = 1;
         life = maxLife;
 
-        solidArea.x = 3;
-        solidArea.y = 16;
-        solidArea.width = 42;
-        solidArea.height = 40;
+        solidArea.x = 18;
+        solidArea.y = 9;
+        solidArea.width = 30;
+        solidArea.height = 30;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
