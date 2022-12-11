@@ -6,20 +6,20 @@ import main.GamePanel;
 import java.util.Random;
 
 public class Zombie extends Entity {
-    int tempSpeed;
-    int changeDirect = 100;
+    GamePanel gp;
     public Zombie(GamePanel gp, int x, int y){
         super(gp, x, y);
-
+        this.gp = gp;
         //STATUs
         type = type_monster;
         invincibleTime = 30;
         name = "Zombie";
-        speed = 1;
-        tempSpeed = speed;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 3;
         attack = 2;
         life = maxLife;
+        changeDirect = 100;
 
         solidArea.x = 3;
         solidArea.y = 15;
@@ -48,61 +48,33 @@ public class Zombie extends Entity {
     public void update() {
         super.update();
         if(!isStunt) {
-            speed = tempSpeed;
+            speed = defaultSpeed;
         }
         if(isStunt){
             stuntCounter++;
         }
-        if(stuntCounter==30){
+        if(stuntCounter==50){
             stuntCounter = 0;
             isStunt = false;
         }
-        int xDistance = Math.abs(worldX - gp.player.worldX) ;
-        int yDistance = Math.abs(worldY - gp.player.worldY) ;
-        int tileDistance = Math.abs(xDistance - yDistance) / gp.tileSize ;
-        if(!onPath && tileDistance < 5) {
-            int i = new Random().nextInt(100)+1;
-            if(i > 50) {
-                onPath = true;
-            }
-        }
-        if(onPath && tileDistance > 20) {
-            onPath = false;
-        }
+        
     }
 
     public void setAction() {
         if(onPath) {
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
-            searchPath(goalCol, goalRow);
+            checkStopChasingOrNot(gp.player, 5, 100);
+            searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         }else {
-            actionLockCounter++;
-            if (actionLockCounter == changeDirect) {
-                Random random = new Random();
-                int i = random.nextInt(100) + 1; // 1 -100
-                if (i <= 25) {
-                    direction = "up";
-                }
-                if (i > 25 && i <= 50) {
-                    direction = "down";
-                }
-                if (i > 50 && i <= 75) {
-                    direction = "left";
-                }
-                if (i > 75 && i <= 100) {
-                    direction = "right";
-                }
-                speed = tempSpeed;
-                actionLockCounter = 0;
-            }
+            checkStartChasingOrNot(gp.player, 5 , 100);
+            getRandomDirection();
         }
+
     }
     public void damageReaction(){
 
         actionLockCounter = 0;
-        tempSpeed++;
-        if(tempSpeed == 3 ){
+        defaultSpeed++;
+        if(defaultSpeed == 3 ){
             changeStateZombie();
         }
         changeDirect -= 40;

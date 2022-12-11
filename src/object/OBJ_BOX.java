@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class OBJ_BOX extends Entity {
-
+    public static final String objName = "Box";
     public OBJ_BOX(GamePanel gp){
         super(gp);
-        name = "Box";
+        name = objName;
         down1 = setup("/res/objects/Box.png");
         collisionOn = true;
 

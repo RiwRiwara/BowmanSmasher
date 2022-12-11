@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import entity.NPC_Dad;
+import monster.Goblin;
 import monster.Skeleton;
 import monster.Slime;
 import monster.Zombie;
@@ -58,14 +59,16 @@ public class AssetSetter {
     }
     public void setMonster() {
         int i = 0;
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 4; i++) {
             gp.monster[gp.currentMap][i] = new Zombie(gp, 36+i, 42);
         }
-        for (i = 6; i < 15; i++) {
+        for (i = 6; i < 8; i++) {
             gp.monster[gp.currentMap][i] = new Skeleton(gp, 33+i, 32+i%4);
         }
 
         gp.monster[gp.currentMap][i] = new Slime(gp, 4, 40);
+        i++;
+        gp.monster[gp.currentMap][i] = new Goblin(gp, 22, 40);
 
     }
 }

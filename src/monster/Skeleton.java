@@ -6,25 +6,24 @@ import main.GamePanel;
 import java.util.Random;
 
 public class Skeleton extends Entity {
-    int tempSpeed;
-    int changeDirect = 10;
     public Skeleton(GamePanel gp, int x, int y){
         super(gp, x, y);
 
         //STATUs
+        changeDirect = 20;
         type = type_monster;
-        invincibleTime = 100;
+        invincibleTime = 10;
         name = "Skeleton";
-        speed = 2;
-        tempSpeed = speed;
+        defaultSpeed = 2;
+        speed = defaultSpeed;
         maxLife = 5;
         attack = 1;
         life = maxLife;
 
-        solidArea.x = 18;
-        solidArea.y = 9;
-        solidArea.width = 30;
-        solidArea.height = 30;
+        solidArea.x = 16;
+        solidArea.y = 2;
+        solidArea.width = 40;
+        solidArea.height = 40;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -42,30 +41,25 @@ public class Skeleton extends Entity {
             right1 = setup("/res/Mob/skeleton/skeleton_right1.png");
             right2 = setup("/res/Mob/skeleton/skeleton_right2.png");
             up1 = setup("/res/Mob/skeleton/skeleton_up1.png");
-            up2 = setup("/res/Mob/skeleton/skeleton_up1.png");
+            up2 = setup("/res/Mob/skeleton/skeleton_up2.png");
 
     }
 
+
     public void setAction() {
-        actionLockCounter++;
-        if (actionLockCounter == changeDirect) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1; // 1 -100
-            if (i <= 25) {
-                direction = "up";
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            speed = tempSpeed;
-            actionLockCounter = 0;
+
+        if(onPath) {
+            //Check stop chasing
+            checkStopChasingOrNot(gp.player, 5, 100);
+            //Search direction to go
+            searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
+        }else{
+
+            //Start chasing
+            checkStartChasingOrNot(gp.player, 5, 100);
+            getRandomDirection();
         }
+
 
     }
     public void damageReaction(){

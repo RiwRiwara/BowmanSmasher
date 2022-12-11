@@ -2,6 +2,7 @@ package main;
 
 import AI.PathFinder;
 import entity.Entity;
+import entity.EntityGenerator;
 import entity.Player;
 
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.JPanel;
 
+import environment.EnvironmentManger;
 import tile.TileManager;
 
 
@@ -46,6 +48,8 @@ public class GamePanel extends JPanel implements Runnable
     public  EventHandler eHandler = new EventHandler(this);
     Thread gameThread;
     public PathFinder pFinder = new PathFinder(this);
+    public EnvironmentManger eManager = new EnvironmentManger(this);
+    public EntityGenerator eGenerator = new EntityGenerator(this);
 
     // ENTITY AND OBJECT
     public Player player = new Player(this, keyH);
@@ -80,14 +84,12 @@ public class GamePanel extends JPanel implements Runnable
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setItem();
+        eManager.setup();
         gameState = titleState;
     }
 
     public void restart() {
-        monster = new Entity[maxMap][100];
-        obj = new Entity[maxMap][100];
-        item = new Entity[maxMap][100];
-        npc = new Entity[maxMap][100];
+        player.resetCounter();
         player.setDefaultValues();
         player.setDefaultPosition();
         player.restoreLife();
@@ -96,12 +98,10 @@ public class GamePanel extends JPanel implements Runnable
         aSetter.setMonster();
         aSetter.setItem();
     }
-
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
-
     public void run() {
         double drawInterval = (1000000000 / FPS);
         double delta = 0.0D;
@@ -130,8 +130,6 @@ public class GamePanel extends JPanel implements Runnable
             }
         }
     }
-
-
     public void update() {
         if(gameState==playState){
             //Player
@@ -167,8 +165,6 @@ public class GamePanel extends JPanel implements Runnable
             //nothing
         }
     }
-
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
@@ -218,6 +214,10 @@ public class GamePanel extends JPanel implements Runnable
             //EMPTTY ENTITIES LIST
             entityList.clear();
 
+            // Environment
+            if(player.life <= 0) {
+                eManager.draw(g2);
+            }
             //UI
             ui.draw(g2);
 
@@ -225,7 +225,6 @@ public class GamePanel extends JPanel implements Runnable
 
         g2.dispose();
     }
-
     public void playMusic(int i) {
         music.setFile(i);
         music.play();

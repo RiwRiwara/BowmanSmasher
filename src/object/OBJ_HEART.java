@@ -9,9 +9,10 @@ import java.util.Objects;
 
 public class OBJ_HEART extends Entity {
     GamePanel gp;
+    public static final String objName = "Heart";
     public OBJ_HEART(GamePanel gp){
         super(gp);
-        name = "Heart";
+        name = objName;
         image = setup("/res/objects/fullHeart.png");
         image2 = setup("/res/objects/halfHeart.png");
         image3 = setup("/res/objects/noHeart.png");

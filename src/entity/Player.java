@@ -3,6 +3,7 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import main.GamePanel;
 import main.KeyHandler;
@@ -15,7 +16,6 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
-    public int hasKey = 0;
     public boolean attackCanceled = false;
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int MaxInventorySize = 20;
@@ -47,8 +47,9 @@ public class Player extends Entity {
         type = 0;
         worldX = gp.tileSize * startX;
         worldY = gp.tileSize * startY;
-        this.speed = 3;
-        this.direction = "down";
+        defaultSpeed = 3;
+        speed = defaultSpeed;
+        direction = "down";
 
         //Player Status
         invincibleTime = 40;
@@ -80,6 +81,8 @@ public class Player extends Entity {
     }
 
     public int getAttack(){
+        motion1_duration = currentWeapon.motion1_duration;
+        motion2_duration = currentWeapon.motion2_duration;
         attackArea = currentWeapon.attackArea;
         return  currentWeapon.attackValue;
     }
@@ -112,7 +115,6 @@ public class Player extends Entity {
         up1 = setup("/res/player/spear/boman_up1.png");
         up2 = setup("/res/player/spear/boman_up2.png");
     }
-
     public void update() {
         if (attacking){
             attacking();
@@ -230,13 +232,12 @@ public class Player extends Entity {
 
 
     }
-
     public void attacking(){
         spriteCounter++;
-        if(spriteCounter <=5){
+        if(spriteCounter <= motion1_duration){
             spriteNum = 1;
         }
-        if(spriteCounter >5 && spriteCounter<=25 ){
+        if(spriteCounter >motion1_duration && spriteCounter<= motion2_duration ){
             spriteNum = 2;
 
             //Save current wx wy
@@ -257,21 +258,21 @@ public class Player extends Entity {
 
             //Check monster Collision
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack);
+            damageMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+
             worldX = currentWorldX;
             worldY = currentWorldY;
             solidArea.width = solidAreaWidth;
             solidArea.height = solidAreaHeight;
 
         }
-        if(spriteCounter >25 ){
+        if(spriteCounter > motion2_duration ){
             spriteNum = 1;
             spriteCounter=0;
             attacking = false;
         }
 
     }
-
     public void pickUpObj(int i){
         if(i != 999){
             String text;
@@ -295,63 +296,52 @@ public class Player extends Entity {
 
         }
     }
-
     public void interactObj(int i){
         if(keyH.enterPressed) {
+            attackCanceled = true;
+
             if (i != 999) {
                 switch (gp.obj[gp.currentMap][i].name) {
-                    case "Door":
-                        boolean isUnlockComplete = false;
-                        for (int j = 0; j < inventory.size(); j++) {
-                            if(inventory.get(j).name == "Key") {
-                                gp.playSE(2);
-                                gp.obj[gp.currentMap][i] = null;
-                                inventory.remove(j);
-                                break;
-                            }
+                    case "Door" -> {
+                        if (gp.obj[gp.currentMap][i].interactDoor()) {
+                            gp.obj[gp.currentMap][i] = null;
                         }
-                        if(!isUnlockComplete) {
-                            gp.ui.showMessage("You need Key \nto unlock this door.");
-                        }else {
-                            gp.ui.showMessage("Door has unlock!");
-                        }
-                        break;
-                    case "Warp":
-                        gp.obj[gp.currentMap][i].teleport(gp);
-                        break;
-                    case "Box":
-                        System.out.println("This is Boxx");
-                        break;
+                    }
+                    case "Warp" -> gp.obj[gp.currentMap][i].teleport(gp);
+                    case "Box" -> System.out.println("This is Boxx");
                 }
             }
         }
-        keyH.ePressed = false;
     }
     public void interactNPC(int i){
-        if(gp.keyH.enterPressed){
-            if(i != 999){
-                attackCanceled = true;
-                gp.gameState = gp.dialogueState;
-                gp.npc[gp.currentMap][i] .speak();
+        if(gp.keyH.enterPressed) {
+            if (i != 999) {
 
-            }else {
+                attackCanceled = true;
+                gp.npc[gp.currentMap][i].speak();
+
+            } else {
                 gp.playSE(attackSound);
                 attacking = true;
             }
         }
-        gp.keyH.enterPressed = false;
+            keyH.enterPressed = false;
+
     }
-    public void damageMonster(int i, int attack){
+    public void damageMonster(int i, Entity attacker, int attack, int knockBackPower){
         if(i!=999){
             if(!gp.monster[gp.currentMap][i].invincible){
                 gp.monster[gp.currentMap][i].damageReaction();
                 gp.monster[gp.currentMap][i].life -= attack;
-                gp.monster[gp.currentMap][i].invincible = true;
 
-                if(gp.monster[gp.currentMap][i].life <= 0){
+                if(gp.monster[gp.currentMap][i].life <= 0 && !gp.monster[gp.currentMap][i].dying){
                     gp.playSE(gp.monster[gp.currentMap][i].deadSound);
                     gp.monster[gp.currentMap][i].dying = true;
                 }else{
+                    gp.monster[gp.currentMap][i].invincible = true;
+                    if(knockBackPower > 0) {
+                        setKnockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
+                    }
                     gp.playSE(gp.monster[gp.currentMap][i].getDamageSound);
                 }
             }
@@ -384,18 +374,13 @@ public class Player extends Entity {
                 attack = getAttack();
             }
             if(selectedItem.type == type_consumable) {
-                switch (selectedItem.name) {
-                    case "Red Potion" -> {
-                        inventory.get(itemIndex).use(this);
-                        inventory.remove(itemIndex);
-                    }
-                    case "Key" -> inventory.remove(itemIndex);
+                if(inventory.get(itemIndex).use(this)) {
+                    inventory.remove(itemIndex);
                 }
             }
 
         }
     }
-
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int tempScreenX = screenX;

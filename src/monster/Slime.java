@@ -8,21 +8,21 @@ import object.OBJ_Fireball;
 import java.util.Random;
 
 public class Slime extends Entity {
-    int tempSpeed;
-    int changeDirect = 30;
     public Slime(GamePanel gp, int x, int y){
         super(gp, x, y);
 
         //STATUs
+        changeDirect = 30;
         type = type_monster;
         invincibleTime = 30;
         name = "Slime";
-        speed = 1;
-        tempSpeed = speed;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 10;
         attack = 1;
         life = maxLife;
         projectile = new OBJ_Fireball(gp);
+        projectile.speed = 8;
 
         solidArea.x = 0;
         solidArea.y = 10;
@@ -63,26 +63,7 @@ public class Slime extends Entity {
             }
 
         }else{
-        actionLockCounter++;
-        if (actionLockCounter == changeDirect) {
-            Random random = new Random();
-            int i = random.nextInt(100) + 1; // 1 -100
-            if (i <= 25) {
-                direction = "up";
-            }
-            if (i > 25 && i <= 50) {
-                direction = "down";
-            }
-            if (i > 50 && i <= 75) {
-                direction = "left";
-            }
-            if (i > 75 && i <= 100) {
-                direction = "right";
-            }
-            speed = tempSpeed;
-            actionLockCounter = 0;
-        }
-
+            getRandomDirection();
         }
 
     }

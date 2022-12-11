@@ -22,6 +22,9 @@ public class UI {
     public int slotCol = 0;
     public int slotRow = 0;
     public int subState = 0;
+    public Entity npc;
+    public int charIndex = 0;
+    public String combineText = "";
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -223,10 +226,40 @@ public class UI {
 
         x += gp.tileSize;
         y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 24F));
-        g2.drawString(currentDialogue, x, y);
+        if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
+
+            //currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
+            char characters[]= npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
+            if(charIndex < characters.length) {
+                String s = String.valueOf(characters[charIndex]);
+                combineText += s;
+                currentDialogue = combineText;
+                charIndex ++;
+            }
+
+            if(gp.keyH.enterPressed){
+                charIndex = 0;
+                combineText = "";
+                if(gp.gameState == gp.dialogueState){
+                    npc.dialogueIndex++;
+                    gp.keyH.enterPressed = false;
+                }
+            }
+        }else{
+            npc.dialogueIndex = 0;
+            if(gp.gameState == gp.dialogueState){
+                gp.gameState = gp.playState;
+                gp.keyH.enterPressed = true;
+            }
+        }
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 16F));
+        for (String line: currentDialogue.split("\n")) {
+            g2.drawString(currentDialogue, x, y);
+            y+=40;
+        }
+
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30F));
-        g2.drawString(">",x*4+gp.tileSize,y*3+gp.tileSize/2);
+//        g2.drawString(">",gp.tileSize*4,gp.tileSize/2);
     }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(0,0,0, 150);
@@ -521,8 +554,8 @@ public class UI {
     }
 
     public void drawGameOverScreen(){
-        g2.setColor(new Color(0,0,0,150));
-        g2.drawRect(0,0,gp.screenWidth, gp.screenHeight);
+//        g2.setColor(new Color(255, 78, 78,100));
+//        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
 
         int x;
         int y;

@@ -5,12 +5,13 @@ import entity.Entity;
 
 public class OBJ_WARP extends Entity{
     GamePanel gp;
+    public static final String objName = "Warp";
     public int x , y ;
     public OBJ_WARP(GamePanel gp, int x, int y){
         super(gp);
         this.x = x;
         this.y = y;
-        name = "Warp";
+        name = objName;
         down1 = setup("/res/objects/warp.png");
         solidArea.x = 10;
         solidArea.y = 10;
