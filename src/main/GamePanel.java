@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import environment.EnvironmentManger;
 import tile.TileManager;
+import tile_interactive.InteractiveTile;
 
 
 public class GamePanel extends JPanel implements Runnable
@@ -29,12 +30,10 @@ public class GamePanel extends JPanel implements Runnable
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
     public final int maxMap = 10;
-    public int currentMap = 0;
 
-    int screenWidth2 = screenWidth;
-    int screenHeight2 = screenHeight;
-    BufferedImage tempScreen;
-    Graphics2D g2;
+
+    public int currentMap = 2;
+
 
     //SYSTEMS
     int FPS = 60;
@@ -57,6 +56,7 @@ public class GamePanel extends JPanel implements Runnable
     public Entity[][] obj = new Entity[maxMap][100];
     public Entity[][] item = new Entity[maxMap][100];
     public Entity[][] npc = new Entity[maxMap][100];
+    public InteractiveTile[][] iTile = new InteractiveTile[maxMap][100];
     ArrayList<Entity> entityList = new ArrayList<>();
     public ArrayList<Entity> projecttileList = new ArrayList<>();
 
@@ -69,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable
     public final int characterState = 4;
     public final int optionState = 5;
     public final int gameOverState = 6;
+    public final int choiceState = 7;
 
     public GamePanel() {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -80,6 +81,7 @@ public class GamePanel extends JPanel implements Runnable
 
 
     public void setupGame() {
+        aSetter.setInteractiveTile();
         aSetter.setObject();
         aSetter.setNPC();
         aSetter.setMonster();
@@ -89,9 +91,10 @@ public class GamePanel extends JPanel implements Runnable
     }
 
     public void restart() {
+        currentMap = 2;
+        aSetter.setInteractiveTile();
         player.resetCounter();
         player.setDefaultValues();
-        player.setDefaultPosition();
         player.restoreLife();
         aSetter.setObject();
         aSetter.setNPC();
@@ -160,6 +163,13 @@ public class GamePanel extends JPanel implements Runnable
                     }
                 }
             }
+            for (int i = 0; i < iTile[currentMap].length; i++) {
+                if(iTile[currentMap][i] !=null) {
+                    iTile[currentMap][i].update();
+                }
+
+            }
+
         }
         if(gameState==pauseState){
             //nothing
@@ -178,6 +188,11 @@ public class GamePanel extends JPanel implements Runnable
             // TILE
             tileM.draw(g2);
 
+            for (int i = 0; i < iTile[currentMap].length; i++) {
+                if(iTile[currentMap][i]!=null){
+                    entityList.add(iTile[currentMap][i]);
+                }
+            }
             //ADD Entity
             entityList.add(player);
 

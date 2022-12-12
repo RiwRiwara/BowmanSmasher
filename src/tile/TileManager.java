@@ -27,10 +27,8 @@ public class TileManager
         getTileImage();
         loadMap("/res/maps/cave02.txt", 0);
         loadMap("/res/maps/forest1.txt", 1);
+        loadMap("/res/maps/home.txt", 2);
     }
-
-
-
     public void getTileImage() {
         setUp(0, "/res/tiles/cave02/black.png", true);
 
@@ -112,6 +110,58 @@ public class TileManager
         setUp(74, "/res/tiles/forest1/water1.png", true);
         setUp(75, "/res/tiles/forest1/water2.png", true);
         setUp(76, "/res/tiles/forest1/water3.png", true);
+
+        setUp(77, "/res/tiles/home/floor_top.png", false);
+        setUp(78, "/res/tiles/home/floor_right.png", false);
+        setUp(79, "/res/tiles/home/floor_left.png", false);
+        setUp(80, "/res/tiles/home/floor_bot.png", false);
+        setUp(81, "/res/tiles/home/floor_corner1.png", false);
+        setUp(82, "/res/tiles/home/floor_corner2.png", false);
+        setUp(83, "/res/tiles/home/floor_corner3.png", false);
+        setUp(84, "/res/tiles/home/floor_corner4.png", false);
+        setUp(85, "/res/tiles/home/floor_1.png", false);
+        setUp(86, "/res/tiles/home/corner1.png", false);
+        setUp(87, "/res/tiles/home/corner2.png", false);
+        setUp(88, "/res/tiles/home/corner3.png", false);
+        setUp(89, "/res/tiles/home/corner4.png", false);
+        setUp(90, "/res/tiles/home/wall_corner_top.png", true);
+        setUp(91, "/res/tiles/home/wall_corner_bot.png", true);
+        setUp(92, "/res/tiles/home/wall_corner_left.png", true);
+        setUp(93, "/res/tiles/home/wall_corner_right.png", true);
+        setUp(94, "/res/tiles/home/wall_top.png", true);
+        setUp(95, "/res/tiles/home/wall_bot.png", true);
+        setUp(96, "/res/tiles/home/void.png", true);
+        setUp(97, "/res/tiles/home/chair_left.png", true);
+        setUp(98, "/res/tiles/home/chair_right.png", true);
+        setUp(99, "/res/tiles/home/carpet_top.png", false);
+        setUp(100, "/res/tiles/home/carpet_left.png", false);
+        setUp(101, "/res/tiles/home/carpet_right.png", false);
+        setUp(102, "/res/tiles/home/carpet_bot.png", false);
+        setUp(103, "/res/tiles/home/carpet_top.png", false);
+        setUp(104, "/res/tiles/home/carpet_corner1.png", false);
+        setUp(105, "/res/tiles/home/carpet_corner2.png", false);
+        setUp(106, "/res/tiles/home/carpet_corner3.png", false);
+        setUp(107, "/res/tiles/home/carpet_corner4.png", false);
+        setUp(108, "/res/tiles/home/table.png", true);
+        setUp(109, "/res/tiles/home/bed_1.png", true);
+        setUp(110, "/res/tiles/home/bed_2.png", true);
+        setUp(111, "/res/tiles/home/bed_3.png", true);
+        setUp(112, "/res/tiles/home/bed_4.png", true);
+        setUp(113, "/res/tiles/home/plant_pot.png", true);
+        setUp(114, "/res/tiles/home/window_1.png", true);
+        setUp(115, "/res/tiles/home/window_2.png", true);
+        setUp(116, "/res/tiles/home/cupboard_corner1.png", true);
+        setUp(117, "/res/tiles/home/cupboard_corner2.png", true);
+        setUp(118, "/res/tiles/home/cupboard_top.png", true);
+        setUp(119, "/res/tiles/home/cupboard_corner3.png", true);
+        setUp(120, "/res/tiles/home/cupboard_corner4.png", true);
+        setUp(121, "/res/tiles/home/cupboard_bot.png", true);
+        setUp(122, "/res/tiles/home/book_bot.png", true);
+        setUp(123, "/res/tiles/home/entrance_1.png", true);
+        setUp(124, "/res/tiles/home/entrance_2.png", true);
+        setUp(125, "/res/tiles/home/entrance_3.png", true);
+        setUp(126, "/res/tiles/home/entrance_4.png", true);
+        setUp(127, "/res/tiles/home/carpet_1.png", false);
 
     }
     public void setUp(int index, String imagePath, boolean collision){

@@ -32,8 +32,8 @@ public class OBJ_DOOR extends Entity {
     public boolean interactDoor() {
         for (int i = 0; i < gp.player.inventory.size(); i++) {
             if(gp.player.inventory.get(i).name == "Key") {
-                gp.player.inventory.remove(i);
                 startDialogue(this, 1);
+                gp.player.inventory.remove(i);
                 gp.playSE(2);
                 return true;
             }

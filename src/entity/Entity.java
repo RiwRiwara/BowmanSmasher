@@ -36,7 +36,7 @@ public class Entity {
     public int dialogueSet = 0;
     public int dialogueIndex = 0;
     public String knockBackDirection;
-
+    public boolean effect = false;
 
     //Counter
     public int actionLockCounter = 0;
@@ -443,6 +443,9 @@ public class Entity {
             if(dying){
                 dyingAnimate(g2);
             }
+            if(effect){
+                effect(g2);
+            }
             g2.drawImage(image, tempScreenX, tempScreenY, null);
             changeAlpha(g2, 1F);
         }
@@ -460,6 +463,14 @@ public class Entity {
         if(dyingCounter > i*7 && dyingCounter<= i*8) {changeAlpha(g2, 1f);}
         if(dyingCounter > i*8) {
             alive = false;
+        }
+    }
+    public void effect(Graphics2D g2){
+        dyingCounter++;
+        if(dyingCounter <= 30 ) { changeAlpha(g2, 0.6f);down1 = setup("/res/objects/greenDest/d2.png");}
+        if(dyingCounter > 30 && dyingCounter<= 60) {changeAlpha(g2, 1F);down1 = setup("/res/objects/greenDest/d1.png");}
+        if(dyingCounter > 60) {
+            dyingCounter=0;
         }
     }
     public void changeAlpha(Graphics2D g2, float alphaValue) {

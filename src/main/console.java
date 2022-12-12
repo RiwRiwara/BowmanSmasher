@@ -86,6 +86,10 @@ public class console extends javax.swing.JFrame {
                     giveItem(Integer.parseInt(command[1]));
                     break;
                 case "map":
+                    if(Integer.parseInt(command[1]) == 2){
+                        gp.player.worldX = 8*gp.tileSize;
+                        gp.player.worldY = 4*gp.tileSize;
+                    }
                     gp.currentMap = Integer.parseInt(command[1]);
                     break;
             }

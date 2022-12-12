@@ -15,8 +15,8 @@ public class OBJ_Spear extends Entity{
         attackArea.width = 36;
         attackArea.height = 36;
         description = String.format("[%s]\nLegendary spear.\nDamage : %d", name, attackValue);
-        motion1_duration = 45;
-        motion2_duration = 85;
+        motion1_duration = 30;
+        motion2_duration = 60;
         knockBackPower = 6;
     }
 }

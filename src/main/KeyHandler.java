@@ -14,7 +14,6 @@ public class KeyHandler implements KeyListener {
 
     public void keyTyped(KeyEvent e) {}
 
-
     public void keyPressed(KeyEvent e) {
 
         int code = e.getKeyCode();
@@ -49,6 +48,9 @@ public class KeyHandler implements KeyListener {
         //Game Over State
         else if (gp.gameState == gp.gameOverState) {
             gameOverState(code);
+        }
+        else if (gp.gameState == gp.choiceState) {
+            choiceState(code);
         }
 
 
@@ -243,7 +245,7 @@ public class KeyHandler implements KeyListener {
     }
     public void dialogueState(int code){
         if(code == KeyEvent.VK_ENTER){
-            gp.gameState = gp.playState;
+            enterPressed = true;
         }
     }
     public void characterState(int code){
@@ -278,7 +280,6 @@ public class KeyHandler implements KeyListener {
             gp.player.selectItem();
         }
     }
-
     public void gameOverState(int code) {
         if (code == KeyEvent.VK_W){
             gp.ui.numCommand--;
@@ -296,12 +297,50 @@ public class KeyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_ENTER) {
             if(gp.ui.numCommand == 0) {
-                gp.gameState = gp.playState;
                 gp.restart();
+                gp.gameState = gp.playState;
                 gp.playMusic(0);
             }else{
                 gp.gameState = gp.titleState;
                 gp.restart();
+            }
+        }
+    }
+    public void choiceState(int code){
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
+        }
+        if (code == KeyEvent.VK_W){
+            gp.ui.numCommand--;
+            if(gp.ui.numCommand < 0) {
+                gp.ui.numCommand = 1;
+            }
+            gp.playSE(4);
+        }
+        if (code == KeyEvent.VK_S){
+            gp.ui.numCommand++;
+            if(gp.ui.numCommand > 1) {
+                gp.ui.numCommand = 0;
+            }
+            gp.playSE(4);
+        }
+        if(code == KeyEvent.VK_ENTER) {
+            if(gp.ui.numCommand == 0) {
+                switch (gp.eHandler.from){
+                    case "teleport":
+                        gp.eHandler.mapWarp(gp.eHandler.curMapTo, gp.eHandler.curXTo, gp.eHandler.curYTo);
+                        break;
+                }
+                gp.gameState = gp.playState;
+            }else{
+                switch (gp.player.direction) {
+                    case "up" -> {gp.player.worldY += 40;gp.player.direction="down";}
+                    case "down" -> {gp.player.worldY -= 40;gp.player.direction="up";}
+                    case "left" -> {gp.player.worldX += 40;gp.player.direction="right";}
+                    case "right" -> {gp.player.worldX -= 40;gp.player.direction="left";}
+                }
+                gp.gameState = gp.playState;
+
             }
         }
     }

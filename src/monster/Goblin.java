@@ -14,14 +14,14 @@ public class Goblin extends Entity {
         type = type_monster;
         invincibleTime = 30;
         name = "Goblin";
-        defaultSpeed = 1;
+        defaultSpeed = 4;
         speed = defaultSpeed;
-        maxLife = 10;
+        maxLife = 2;
         attack = 1;
         life = maxLife;
         changeDirect = 100;
-        motion1_duration = 40;
-        motion2_duration = 85;
+        motion1_duration = 30;
+        motion2_duration = 60;
 
         solidArea.x = 3;
         solidArea.y = 18;

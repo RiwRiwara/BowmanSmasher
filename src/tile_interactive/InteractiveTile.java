@@ -3,10 +3,12 @@ package tile_interactive;
 import entity.Entity;
 import main.GamePanel;
 
-public class InteracticeTile extends Entity {
+public class InteractiveTile extends Entity {
     GamePanel gp;
-    InteracticeTile(GamePanel gp){
+    public boolean destrucuible = false;
+    public InteractiveTile(GamePanel gp){
         super(gp);
+        this.gp = gp;
     }
     public void update() {
 

@@ -25,6 +25,7 @@ public class UI {
     public Entity npc;
     public int charIndex = 0;
     public String combineText = "";
+    public boolean finishDialogue = false;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -88,18 +89,19 @@ public class UI {
             drawCharacterScreen();
             drawInventory();
         }
-
         //Option State
         if(gp.gameState == gp.optionState){
             drawOptionScreen();
         }
-
         //Game over state
+
         if(gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
         }
+        if(gp.gameState == gp.choiceState) {
+            drawChoiceState();
+        }
     }
-
     public void drawCharacterScreen() {
         //Create A FRAME
         final int frameX = gp.tileSize*2 - 20;
@@ -226,16 +228,17 @@ public class UI {
 
         x += gp.tileSize;
         y += gp.tileSize;
+
         if(npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
 
-            //currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-            char characters[]= npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
+            char[] characters = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
             if(charIndex < characters.length) {
                 String s = String.valueOf(characters[charIndex]);
                 combineText += s;
                 currentDialogue = combineText;
                 charIndex ++;
             }
+
 
             if(gp.keyH.enterPressed){
                 charIndex = 0;
@@ -244,6 +247,7 @@ public class UI {
                     npc.dialogueIndex++;
                     gp.keyH.enterPressed = false;
                 }
+
             }
         }else{
             npc.dialogueIndex = 0;
@@ -254,12 +258,10 @@ public class UI {
         }
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 16F));
         for (String line: currentDialogue.split("\n")) {
-            g2.drawString(currentDialogue, x, y);
-            y+=40;
+            g2.drawString(line, x, y);
+            y+=35;
         }
 
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 30F));
-//        g2.drawString(">",gp.tileSize*4,gp.tileSize/2);
     }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(0,0,0, 150);
@@ -281,7 +283,6 @@ public class UI {
         int x = tailX - length/2;
         return  x;
     }
-
 
     public void drawTitleScreen(){
         if(titleScreenState == 0 ) {
@@ -552,10 +553,7 @@ public class UI {
         }
 
     }
-
     public void drawGameOverScreen(){
-//        g2.setColor(new Color(255, 78, 78,100));
-//        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
 
         int x;
         int y;
@@ -591,6 +589,41 @@ public class UI {
         }
 
     }
+
+    public void drawChoiceState(){
+        int x = gp.tileSize*2;
+        int y = gp.tileSize/2;
+        int width = gp.screenWidth - (gp.tileSize*4);
+        int height = gp.tileSize*4;
+        drawSubWindow(x, y, width, height);
+        x += gp.tileSize;
+        y += gp.tileSize;
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 16F));
+        for (String line: currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y+=35;
+        }
+
+        String text ;
+        g2.setFont(g2.getFont().deriveFont(20F));
+        text = "Yes";
+        x =  gp.tileSize*16;
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if (numCommand == 0) {
+            g2.drawString(">", x-20, y);
+        }
+        text = "No";
+        y += 50;
+        g2.drawString(text, x, y);
+        if (numCommand == 1) {
+            g2.drawString(">", x-20, y);
+        }
+
+    }
+
+
 
 
 }

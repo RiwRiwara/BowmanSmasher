@@ -42,9 +42,9 @@ public class Player extends Entity {
         setItems();
     }
     public void setDefaultValues() {
-        int startX = 5;
-        int startY = 32;
-        type = 0;
+        int startX = 8;
+        int startY = 4;
+        type = type_monster;
         worldX = gp.tileSize * startX;
         worldY = gp.tileSize * startY;
         defaultSpeed = 3;
@@ -70,23 +70,16 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
     }
-    public void setDefaultPosition(){
-        worldX = gp.tileSize * 5;
-        worldY = gp.tileSize * 35;
-        direction = "down";
-    }
     public void restoreLife(){
         life = maxLife;
         invincible = false;
     }
-
     public int getAttack(){
         motion1_duration = currentWeapon.motion1_duration;
         motion2_duration = currentWeapon.motion2_duration;
         attackArea = currentWeapon.attackArea;
         return  currentWeapon.attackValue;
     }
-
     public void getPlayerImage() {
         down1 = setup("/res/player/boman_down1.png");
         down2 = setup("/res/player/boman_down2.png");
@@ -141,6 +134,7 @@ public class Player extends Entity {
                 int objIndex =  gp.cChecker.checkItem(this, true);
                 pickUpObj(objIndex);
 
+
                 //Check Item collision
                 int itemIndex =  gp.cChecker.checkObject(this, true);
                 interactObj(itemIndex);
@@ -153,6 +147,10 @@ public class Player extends Entity {
                 //Check Monster collision
                 int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
                 contactMonster(monsterIndex);
+
+                //Check Inter
+                //int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+                //interactFloor(iTileIndex);
 
                 //Check Event
                 gp.eHandler.checkEvent();
@@ -308,25 +306,30 @@ public class Player extends Entity {
                         }
                     }
                     case "Warp" -> gp.obj[gp.currentMap][i].teleport(gp);
-                    case "Box" -> System.out.println("This is Boxx");
+                    case "Box" -> System.out.println("This is Box");
+                    default -> gp.obj[gp.currentMap][i].interact();
                 }
             }
+
         }
     }
+    public void interactFloor(int i ){
+        if(i!=999) {
+
+        }
+    }
+    // TODO: 11/12/2565 bug 
     public void interactNPC(int i){
         if(gp.keyH.enterPressed) {
+            attackCanceled = true;
             if (i != 999) {
-
-                attackCanceled = true;
                 gp.npc[gp.currentMap][i].speak();
-
             } else {
                 gp.playSE(attackSound);
-                attacking = true;
             }
-        }
-            keyH.enterPressed = false;
+            attacking = true;
 
+        }
     }
     public void damageMonster(int i, Entity attacker, int attack, int knockBackPower){
         if(i!=999){

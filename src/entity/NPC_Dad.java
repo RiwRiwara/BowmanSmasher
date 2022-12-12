@@ -11,7 +11,7 @@ public class NPC_Dad extends Entity{
     public NPC_Dad(GamePanel gp){
         super(gp);
         type = 1;
-        speed = 2;
+        speed = 1;
         setDialogue();
         getImage();
         solidArea.x = 9;
@@ -32,15 +32,16 @@ public class NPC_Dad extends Entity{
             up2 = setup("/res/Mob/dad/dad_up2.png");
     }
     public void setDialogue (){
-        dialogues[0][0] = "Hey, son.";
-        dialogues[0][1] = "What happen?";
-        dialogues[0][2] = "Why you scare?";
+        dialogues[0][0] = "Hi son. Today is your 20th birthday.\nI have something for you.";
+        dialogues[0][1] = "Can you lead the Smasher Family's arrow?\n" +
+                            "This arrow is essential to our family.\nIt lies stolen away in a mysterious cave at \nthe top of the forest.";
+        dialogues[0][2] = "if you can,\nI will give you all the possessions\nI have for your birthday.";
     }
 
     public void setAction() {
 
                 actionLockCounter++;
-                if (actionLockCounter == 120) {
+                if (actionLockCounter == 60) {
                     Random random = new Random();
                     int i = random.nextInt(100) + 1; // 1 -100
                     if (i <= 25) {
@@ -60,7 +61,7 @@ public class NPC_Dad extends Entity{
     }
     public void speak(){
         facePlayer();
-        startDialogue(this, dialogueSet);
+        startDialogue(this, 0);
     }
 
 
